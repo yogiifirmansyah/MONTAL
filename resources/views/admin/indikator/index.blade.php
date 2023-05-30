@@ -7,7 +7,7 @@
             <h2>Halaman Indikator</h2>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+            <button type="button" class="btn btn-primary" id="addIndikator" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
                 Tambah Indikator
             </button>
         </div>
@@ -46,7 +46,7 @@
                         <td>{{ $indikator->variabel->nama_variabel }}</td>
                         <td>{{ $indikator->nama_indikator }}</td>
                         <td>
-                            <div class="btn btn-sm btn-warning" id="editIndikator-{{ $indikator->id }}" indikator_id="{{ $indikator->id }}">Edit</div>
+                            <div class="btn btn-sm btn-warning" id="editIndikator" indikator_id="{{ $indikator->id }}" data-bs-toggle="modal" data-bs-target="#kt_modal_1">Edit</div>
                             <div class="btn btn-sm btn-danger">Hapus</div>
                         </td>
                     </tr>
@@ -61,11 +61,10 @@
 
 <div class="modal fade" tabindex="-1" id="kt_modal_1">
     <div class="modal-dialog">
-        <form action="{{ url('admin/indikator') }}" method="POST">
-            @csrf
+        <form id="indikatorData">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Tambah indikator</h3>
+                    <h3 class="modal-title">Tambah Indikator</h3>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -76,29 +75,32 @@
 
                 <div class="modal-body">
                     <div class="mb-10">
+                        <input type="hidden" name="indikator_id" id="indikatorId">
                         <label for="exampleFormControlInput1" class="form-label">Nama Varibel</label>
-                        <select type="text" name="variabel_id" class="form-select">
-                            <option value="">Pilih Variabel</option>
+                        <select type="text" name="variabel_id" id="variabelId" class="form-select">
+                            <option value="">Pilih Indikator</option>
                             @foreach ($variabels as $variabel)
-                            <option value="{{ $variabel->id }}">{{ $variabel->nama_variabel }}</option>
+                            <option value="{{ $variabel->id }}" id="option-{{ $variabel->id }}">{{ $variabel->nama_variabel }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-10">
-                        <label for="exampleFormControlInput1" class="form-label">Nama Varibel</label>
-                        <input type="text" name="nama_indikator" class="form-control" placeholder="Masukkan Nama indikator" />
+                        <label for="exampleFormControlInput1" class="form-label">Nama Indikator</label>
+                        <input type="text" name="nama_indikator" id="indikatorName" value="" class="form-control" placeholder="Masukkan Nama indikator" />
                     </div>
                 </div>
 
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Tambahkan</button>
+                    <button type="submit" class="btn btn-primary" id="storeIndikator">Tambahkan</button>
+                    <button type="submit" class="btn btn-primary" id="updateIndikator">Ubah</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
 
 @endsection

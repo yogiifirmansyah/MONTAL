@@ -18,16 +18,39 @@ class IndikatorController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'nama_indikator' => 'required|string',
-            'variabel_id' => 'required'
+            'indikatorName' => 'required|string',
+            'variabelId' => 'required'
         ]);
 
-        Indikator::create([
-            'nama_indikator' => $request->nama_indikator,
-            'variabel_id' => $request->variabel_id,
-        ]);
+        $indikator = new Indikator;
+        $indikator->nama_indikator = $request->indikatorName;
+        $indikator->variabel_id = $request->variabelId;
+        $indikator->save();
 
-        return redirect()->back()->with('success_message', 'Indikator Berhasil Ditambahkan');
+        session()->flash('success_message', 'Indikator Berhasil Ditambahkan');
+        return response()->json(['success' => true]);
+    }
+
+    public function edit($id)
+    {
+        $indikator = Indikator::find($id);
+
+        return response()->json([
+            'data' => $indikator
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+        $indikator = Indikator::find($id);
+        $indikator->nama_indikator = $request->indikatorName;
+        $indikator->variabel_id = $request->variabelId;
+        $indikator->save();
+
+        session()->flash('success_message', 'Indikator Berhasil Diubah');
+        return response()->json(['success' => true]);
     }
 }

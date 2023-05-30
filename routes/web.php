@@ -41,4 +41,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get("/admin/indikator", [IndikatorController::class, 'index']);
     Route::post("/admin/indikator", [IndikatorController::class, 'store']);
+    Route::get("/admin/indikator/{id}", [IndikatorController::class, 'edit']);
+    Route::post("/admin/indikator/{id}", [IndikatorController::class, 'update']);
 });
