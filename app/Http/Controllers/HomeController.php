@@ -22,11 +22,11 @@ class HomeController extends Controller
      */
     public function userHome()
     {
-        return view('user.dashboard');
+        return view('dashboard');
     }
 
     public function walasHome()
     {
-        return view('wali-kelas.dashboard');
+        return view('dashboard');
     }
 }

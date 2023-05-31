@@ -19,8 +19,10 @@ class WaliKelasMiddleware
     {
         if (!Auth::user()->role == 1) {
             return redirect()->back()->with('status', 'Access Denied. You are not Wali Kelas!');
+        } elseif (Auth::user()->role == 0) {
+            return redirect()->back()->with('status', 'Access Denied. You are not Wali Kelas!');
+        } else {
+            return $next($request);
         }
-
-        return $next($request);
     }
 }

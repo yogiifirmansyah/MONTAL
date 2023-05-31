@@ -17,13 +17,43 @@ class VariabelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_variabel' => 'required|string'
+            'variabelName' => 'required|string'
         ]);
 
-        Variabel::create([
-            'nama_variabel' => $request->nama_variabel
+        $variabel = new Variabel;
+        $variabel->nama_variabel = $request->variabelName;
+        $variabel->save();
+
+        session()->flash('success_message', 'Data Berhasil Ditambahkan');
+        return response()->json(['success' => true]);
+    }
+
+    public function edit($id)
+    {
+        $variabel = Variabel::find($id);
+        return response()->json($variabel);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+        $request->validate([
+            'variabelName' => 'required|string'
         ]);
 
-        return redirect()->back()->with('success_message', 'Variabel Berhasil Ditambahkan');
+        $variabel = Variabel::find($id);
+        $variabel->nama_variabel = $request->variabelName;
+        $variabel->save();
+
+        session()->flash('success_message', 'Data Berhasil Diubah');
+        return response()->json(['success' => true]);
+    }
+
+    public function destroy($id)
+    {
+        Variabel::where('id', $id)->delete();
+
+        session()->flash('success_message', 'Data Berhasil Dihapus');
+        return response()->json(['success' => true]);
     }
 }

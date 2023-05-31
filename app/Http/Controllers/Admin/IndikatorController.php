@@ -37,20 +37,31 @@ class IndikatorController extends Controller
     {
         $indikator = Indikator::find($id);
 
-        return response()->json([
-            'data' => $indikator
-        ]);
+        return response()->json($indikator);
     }
 
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        $request->validate([
+            'indikatorName' => 'required|string',
+            'variabelId' => 'required'
+        ]);
+
         $indikator = Indikator::find($id);
         $indikator->nama_indikator = $request->indikatorName;
         $indikator->variabel_id = $request->variabelId;
         $indikator->save();
 
         session()->flash('success_message', 'Indikator Berhasil Diubah');
+        return response()->json(['success' => true]);
+    }
+
+    public function destroy($id)
+    {
+        Indikator::where('id', $id)->delete();
+
+        session()->flash('success_message', 'Data Berhasil Dihapus');
         return response()->json(['success' => true]);
     }
 }
