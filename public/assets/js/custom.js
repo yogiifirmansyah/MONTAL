@@ -235,4 +235,59 @@ $(document).ready(function () {
             });
         });
     });
+
+    // -------------------------------------------------------- //
+
+    // Delete Wali kelas
+    $(document).on("click", "#deleteWaliKelas", function (e) {
+        e.preventDefault();
+        var waliKelasId = $(this).attr("waliKelas_id");
+        $(document).on("click", "#destroyWaliKelas", function (e) {
+            e.preventDefault();
+            // console.log(waliKelasId);
+            $.ajax({
+                type: "get",
+                url: "/admin/wali-kelas/delete/" + waliKelasId,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
+
+    // Show Wali Kelas With Modal
+    $(document).on("click", "#showWaliKelas", function (e) {
+        e.preventDefault();
+        var waliKelasId = $(this).attr("waliKelas_id");
+
+        $.ajax({
+            type: "get",
+            url: "/admin/wali-kelas/show/" + waliKelasId,
+            success: function (data) {
+                $("#modalContent").html(`
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/assets/images/photos/${data.foto}" class="img-fluid" />
+                        </div>
+                        <div class="col-md">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h4>${data.nama_depan} ${data.nama_belakang}</h4>
+                                </li>
+                                <li class="list-group-item"><strong>NIP: </strong>${data.nip}</li>
+                                <li class="list-group-item"><strong>TTL: </strong>${data.tempat_lahir}, ${data.tanggal_lahir}</li>
+                                <li class="list-group-item"><strong>Telp: </strong>${data.telp}</li>
+                                <li class="list-group-item"><strong>Email: </strong>${data.email}</li>
+                                <li class="list-group-item"><strong>Alamat Lengkap: </strong>${data.alamat}, ${data.desa}, ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi}</li>
+                                <li class="list-group-item"><strong>Kode Pos: </strong>${data.kode_pos}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                `);
+            },
+        });
+    });
 });

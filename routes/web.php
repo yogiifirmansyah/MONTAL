@@ -52,4 +52,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get("/admin/wali-kelas", [WaliKelasController::class, 'index']);
     Route::get("/admin/wali-kelas/create", [WaliKelasController::class, 'create']);
     Route::post("/admin/wali-kelas", [WaliKelasController::class, 'store']);
+    Route::get("/admin/wali-kelas/{id}", [WaliKelasController::class, 'edit']);
+    Route::post("/admin/wali-kelas/{id}", [WaliKelasController::class, 'update']);
+    Route::get("/admin/wali-kelas/delete/{id}", [WaliKelasController::class, 'destroy']);
+    Route::get("/admin/wali-kelas/show/{id}", [WaliKelasController::class, 'show']);
 });

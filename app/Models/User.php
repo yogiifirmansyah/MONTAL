@@ -43,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function wali_kelas()
+    {
+        return $this->hasOne(WaliKelas::class, 'user_id', 'id');
+    }
 }

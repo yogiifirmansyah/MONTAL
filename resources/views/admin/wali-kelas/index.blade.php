@@ -40,9 +40,9 @@
                             <td>{{ $walas->user->role === 1 ? 'Wali Kelas':'' }}</td>
                             <td>{{ $walas->email }}</td>
                             <td>
-                                <a href=""><span class="badge bg-soft-danger">Hapus</span></a>
-                                <a href=""><span class="badge bg-soft-primary">Ubah</span></a>
-                                <a href=""><span class="badge bg-soft-warning">Lihat Detail</span></a>
+                                <a href="javascript:void(0)" id="deleteWaliKelas" waliKelas_id="{{ $walas->id }}"><span class="badge bg-soft-danger" data-bs-toggle="modal" data-bs-target="#myModalDelete">Hapus</span></a>
+                                <a href="{{ url('admin/wali-kelas/'.$walas->id) }}"><span class="badge bg-soft-primary">Ubah</span></a>
+                                <a href="javascript:void(0)" id="showWaliKelas" waliKelas_id="{{ $walas->id }}"><span class="badge bg-soft-warning" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Lihat Detail</span></a>
                             </td>
                         </tr>
                         @endforeach
@@ -52,6 +52,44 @@
         </div>
     </div> <!-- end col -->
 </div>
+
+<!--  Large modal example -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Detail Wali Kelas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Delete modal content -->
+<div id="myModalDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hapus Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <h6>Anda Yakin ingin menghapus data?</h6>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">No</button>
+                <button type="button" id="destroyWaliKelas" class="btn btn-danger waves-effect waves-light">Yes, Delete!</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @endsection
 
