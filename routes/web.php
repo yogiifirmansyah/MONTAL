@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndikatorController;
+use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\VariabelController;
 use App\Http\Controllers\Admin\WaliKelasController;
 use Illuminate\Support\Facades\Auth;
@@ -56,4 +57,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post("/admin/wali-kelas/{id}", [WaliKelasController::class, 'update']);
     Route::get("/admin/wali-kelas/delete/{id}", [WaliKelasController::class, 'destroy']);
     Route::get("/admin/wali-kelas/show/{id}", [WaliKelasController::class, 'show']);
+
+    Route::get("/admin/kelas", [KelasController::class, 'index']);
+    Route::post("/admin/kelas", [KelasController::class, 'store']);
+    Route::get("/admin/kelas/{id}", [KelasController::class, 'edit']);
+    Route::post("/admin/kelas/{id}", [KelasController::class, 'update']);
+    Route::get("/admin/kelas/delete/{id}", [KelasController::class, 'destroy']);
 });

@@ -64,6 +64,12 @@
                         <span>Wali Kelas</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/admin/kelas') }}">
+                        <i class="dripicons-user-group"></i>
+                        <span>Kelas</span>
+                    </a>
+                </li>
                 @endif
 
                 <?php /* 

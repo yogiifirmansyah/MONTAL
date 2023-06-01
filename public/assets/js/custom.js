@@ -290,4 +290,122 @@ $(document).ready(function () {
             },
         });
     });
+
+    // -------------------------------------------------------- //
+
+    // Store Kelas
+    $(document).on("click", "#addKelas", function () {
+        $("#kelasData").trigger("reset");
+        $(".modal-title").html("Tambah Kelas");
+
+        $("#updateKelas").addClass("d-none");
+        $("#storeKelas").removeClass("d-none");
+
+        $(document).on("click", "#storeKelas", function (e) {
+            e.preventDefault();
+
+            var kelasName = $("#kelasName").val();
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                type: "POST",
+                url: "/admin/kelas",
+                data: {
+                    kelasName: kelasName,
+                },
+                success: function (response) {
+                    $("#kelasData").trigger("reset");
+                    $("#myModal").modal("hide");
+                    window.location.reload(true);
+                },
+                error: function (error) {
+                    const errorMessage = error.responseJSON.message;
+                    $("#errorMessage").html(`
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong>
+                            <li>${errorMessage}</li>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                },
+            });
+        });
+    });
+
+    // Update Kelas
+    $(document).on("click", "#editKelas", function (e) {
+        e.preventDefault();
+
+        $("#storeKelas").addClass("d-none");
+        $("#updateKelas").removeClass("d-none");
+
+        var kelas_id = $(this).attr("kelas_id");
+        // console.log(kelas_id);
+        $.get("/admin/kelas/" + kelas_id, function (data) {
+            // console.log(data);
+            $(".modal-title").html("Ubah Kelas");
+            $("#kelasId").val(data.id);
+            $("#kelasName").val(data.nama_kelas);
+        });
+
+        $(document).on("click", "#updateKelas", function (e) {
+            e.preventDefault();
+
+            var kelasId = $("#kelasId").val();
+            var kelasName = $("#kelasName").val();
+
+            // console.log(kelasId);
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                type: "POST",
+                url: "/admin/kelas/" + kelasId,
+                data: {
+                    kelasId: kelasId,
+                    kelasName: kelasName,
+                },
+                success: function (response) {
+                    $("#kelasData").trigger("reset");
+                    $("#myModal").modal("hide");
+                    window.location.reload(true);
+                },
+                error: function (error) {
+                    const errorMessage = error.responseJSON.message;
+                    $("#errorMessage").html(`
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong>
+                            <li>${errorMessage}</li>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                },
+            });
+        });
+    });
+
+    // Delete Kelas
+    $(document).on("click", "#deleteKelas", function (e) {
+        e.preventDefault();
+        var kelasId = $(this).attr("kelas_id");
+        $(document).on("click", "#destroyKelas", function (e) {
+            e.preventDefault();
+            // console.log(kelasId);
+            $.ajax({
+                type: "get",
+                url: "/admin/kelas/delete/" + kelasId,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
 });
