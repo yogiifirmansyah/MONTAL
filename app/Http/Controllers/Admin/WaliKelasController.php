@@ -30,6 +30,7 @@ class WaliKelasController extends Controller
             'nama_belakang' => 'required',
             'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'telp' => 'required',
             'email' => 'required',
             'alamat' => 'required',
@@ -57,7 +58,7 @@ class WaliKelasController extends Controller
                 $ext = $image_tmp->getClientOriginalExtension();
                 // Generate new Image name
                 $image_name = 'Photo' . rand(111, 999) . '.' . $ext;
-                $image_path = 'assets/images/photos/' . $image_name;
+                $image_path = 'assets/images/photos/wali-kelas/' . $image_name;
                 // Upload Image
                 Image::make($image_tmp)->save($image_path);
             }
@@ -76,6 +77,7 @@ class WaliKelasController extends Controller
         $walas->nama_belakang = $request->nama_belakang;
         $walas->tanggal_lahir = $request->tanggal_lahir;
         $walas->tempat_lahir = $request->tempat_lahir;
+        $walas->jenis_kelamin = $request->jenis_kelamin;
         $walas->foto = $image_name;
         $walas->telp = $request->telp;
         $walas->email = $request->email;
@@ -105,6 +107,7 @@ class WaliKelasController extends Controller
             'nama_belakang' => 'required',
             'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'telp' => 'required',
             'email' => 'required',
             'alamat' => 'required',
@@ -116,7 +119,8 @@ class WaliKelasController extends Controller
             'role' => 'required',
         ]);
 
-        $user_id = User::orderBy('id', 'DESC')->pluck('id')->first();
+        $walas = WaliKelas::find($id);
+        $user_id = User::where('id', $walas->user_id)->pluck('id')->first();
         // // Store data in database users
         $user = User::find($user_id);
         $user->name = $request->nama_depan . ' ' . $request->nama_belakang;
@@ -125,20 +129,21 @@ class WaliKelasController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        $walas = WaliKelas::find($id);
         // Upload Photo
         if ($request->hasFile('foto')) {
             $image_tmp = $request->file('foto');
             if ($image_tmp->isValid()) {
-                $pathPhotos = 'assets/images/photos/' . $walas->foto;
-                if (file_exists($pathPhotos)) {
-                    unlink($pathPhotos);
+                $pathPhotos = 'assets/images/photos/wali-kelas/' . $walas->foto;
+                if (!empty($walas->foto)) {
+                    if (file_exists($pathPhotos)) {
+                        unlink($pathPhotos);
+                    }
                 }
                 // Get Extension
                 $ext = $image_tmp->getClientOriginalExtension();
                 // Generate new Image name
                 $image_name = 'Photo' . rand(111, 999) . '.' . $ext;
-                $image_path = 'assets/images/photos/' . $image_name;
+                $image_path = 'assets/images/photos/wali-kelas/' . $image_name;
                 // Upload Image
                 Image::make($image_tmp)->save($image_path);
             }
@@ -155,6 +160,7 @@ class WaliKelasController extends Controller
         $walas->nama_belakang = $request->nama_belakang;
         $walas->tanggal_lahir = $request->tanggal_lahir;
         $walas->tempat_lahir = $request->tempat_lahir;
+        $walas->jenis_kelamin = $request->jenis_kelamin;
         $walas->foto = $image_name;
         $walas->telp = $request->telp;
         $walas->email = $request->email;
@@ -175,7 +181,7 @@ class WaliKelasController extends Controller
         $user = User::where('id', $walas->user_id)->first();
 
         if (!empty($walas->foto)) {
-            $pathPhotos = 'assets/images/photos/' . $walas->foto;
+            $pathPhotos = 'assets/images/photos/wali-kelas/' . $walas->foto;
             if (file_exists($pathPhotos)) {
                 unlink($pathPhotos);
             }

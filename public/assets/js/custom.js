@@ -269,19 +269,42 @@ $(document).ready(function () {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="/assets/images/photos/${data.foto}" class="img-fluid" />
+                            <img src="/assets/images/photos/${
+                                data.foto
+                            }" class="img-fluid" />
                         </div>
                         <div class="col-md">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <h4>${data.nama_depan} ${data.nama_belakang}</h4>
+                                    <h4>${data.nama_depan} ${
+                    data.nama_belakang
+                }</h4>
                                 </li>
-                                <li class="list-group-item"><strong>NIP: </strong>${data.nip}</li>
-                                <li class="list-group-item"><strong>TTL: </strong>${data.tempat_lahir}, ${data.tanggal_lahir}</li>
-                                <li class="list-group-item"><strong>Telp: </strong>${data.telp}</li>
-                                <li class="list-group-item"><strong>Email: </strong>${data.email}</li>
-                                <li class="list-group-item"><strong>Alamat Lengkap: </strong>${data.alamat}, ${data.desa}, ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi}</li>
-                                <li class="list-group-item"><strong>Kode Pos: </strong>${data.kode_pos}</li>
+                                <li class="list-group-item"><strong>NIP: </strong>${
+                                    data.nip
+                                }</li>
+                                <li class="list-group-item"><strong>TTL: </strong>${
+                                    data.tempat_lahir
+                                }, ${data.tanggal_lahir}</li>
+                                <li class="list-group-item"><strong>Jenis Kelamin: </strong>${
+                                    data.jenis_kelamin === "L"
+                                        ? "Laki-Laki"
+                                        : "Perempuan"
+                                }</li>
+                                <li class="list-group-item"><strong>Telp: </strong>${
+                                    data.telp
+                                }</li>
+                                <li class="list-group-item"><strong>Email: </strong>${
+                                    data.email
+                                }</li>
+                                <li class="list-group-item"><strong>Alamat Lengkap: </strong>${
+                                    data.alamat
+                                }, ${data.desa}, ${data.kecamatan}, ${
+                    data.kabupaten
+                }, ${data.provinsi}</li>
+                                <li class="list-group-item"><strong>Kode Pos: </strong>${
+                                    data.kode_pos
+                                }</li>
                             </ul>
                         </div>
                     </div>
@@ -305,6 +328,7 @@ $(document).ready(function () {
             e.preventDefault();
 
             var kelasName = $("#kelasName").val();
+            var waliKelasId = $("#waliKelasId").val();
 
             $.ajax({
                 headers: {
@@ -316,6 +340,7 @@ $(document).ready(function () {
                 url: "/admin/kelas",
                 data: {
                     kelasName: kelasName,
+                    waliKelasId: waliKelasId,
                 },
                 success: function (response) {
                     $("#kelasData").trigger("reset");
@@ -357,6 +382,7 @@ $(document).ready(function () {
 
             var kelasId = $("#kelasId").val();
             var kelasName = $("#kelasName").val();
+            var waliKelasId = $("#waliKelasId").val();
 
             // console.log(kelasId);
 
@@ -371,6 +397,7 @@ $(document).ready(function () {
                 data: {
                     kelasId: kelasId,
                     kelasName: kelasName,
+                    waliKelasId: waliKelasId,
                 },
                 success: function (response) {
                     $("#kelasData").trigger("reset");
@@ -406,6 +433,88 @@ $(document).ready(function () {
                     window.location.reload(true);
                 },
             });
+        });
+    });
+
+    // -------------------------------------------------------- //
+
+    // Delete Siswa
+    $(document).on("click", "#deleteSiswa", function (e) {
+        e.preventDefault();
+        var siswaId = $(this).attr("siswa_id");
+        $(document).on("click", "#destroySiswa", function (e) {
+            e.preventDefault();
+            // console.log(siswaId);
+            $.ajax({
+                type: "get",
+                url: "/admin/siswa/delete/" + siswaId,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
+
+    // Show Siswa With Modal
+    $(document).on("click", "#showSiswa", function (e) {
+        e.preventDefault();
+        var siswaId = $(this).attr("siswa_id");
+
+        $.ajax({
+            type: "get",
+            url: "/admin/siswa/show/" + siswaId,
+            success: function (data) {
+                $("#modalContent").html(`
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/assets/images/photos/siswa/${
+                                data.foto
+                            }" class="img-fluid" />
+                        </div>
+                        <div class="col-md">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h4>${data.nama_depan} ${
+                    data.nama_belakang
+                }</h4>
+                                </li>
+                                <li class="list-group-item"><strong>NISN: </strong>${
+                                    data.nisn
+                                }</li>
+                                <li class="list-group-item"><strong>TTL: </strong>${
+                                    data.tempat_lahir
+                                }, ${data.tanggal_lahir}</li>
+                                <li class="list-group-item"><strong>Jenis Kelamin: </strong>${
+                                    data.jenis_kelamin === "L"
+                                        ? "Laki-Laki"
+                                        : "Perempuan"
+                                }</li>
+                                <li class="list-group-item"><strong>Telp: </strong>${
+                                    data.telp
+                                }</li>
+                                <li class="list-group-item"><strong>Nama Orang Tua: </strong>${
+                                    data.nama_orang_tua
+                                }</li>
+                                <li class="list-group-item"><strong>Alamat Lengkap: </strong>${
+                                    data.alamat
+                                }</li>
+                                <li class="list-group-item"><strong>Tanggal Masuk: </strong>${
+                                    data.tanggal_masuk
+                                }</li>
+                                <li class="list-group-item"><strong>Tanggal Keluar: </strong>${
+                                    data.tanggal_keluar != null ? "" : "-"
+                                }</li>
+                                <li class="list-group-item"><strong>Status: </strong>${
+                                    data.status === 1 ? "Aktif" : "Tidak Aktif"
+                                }</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                `);
+            },
         });
     });
 });

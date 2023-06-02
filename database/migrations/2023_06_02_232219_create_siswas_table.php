@@ -13,25 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wali_kelas', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('nip');
+            $table->unsignedBigInteger('kelas_id');
             $table->string('nama_depan');
             $table->string('nama_belakang');
-            $table->date('tanggal_lahir');
-            $table->string('tempat_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('nisn');
             $table->string('foto')->nullable();
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('nama_orang_tua');
             $table->string('telp');
-            $table->string('email');
             $table->string('alamat');
-            $table->string('provinsi');
-            $table->string('kabupaten');
-            $table->string('kecamatan');
-            $table->string('desa');
-            $table->string('kode_pos');
+            $table->date('tanggal_masuk');
+            $table->date('tanggal_keluar')->nullable();
+            $table->tinyInteger('status');
             $table->timestamps();
+
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
         });
     }
 
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wali_kelas');
+        Schema::dropIfExists('siswas');
     }
 };

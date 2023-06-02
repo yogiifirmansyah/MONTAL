@@ -1,21 +1,21 @@
 @extends('layouts.master')
-@section('title', 'Wali Kelas')
+@section('title', 'Siswa')
 
 @section('content')
 @component('common-components.breadcrumb')
-@slot('pagetitle') Wali Kelas @endslot
-@slot('title') Tambah Data Wali Kelas @endslot
+@slot('pagetitle') Siswa @endslot
+@slot('title') Tambah Data Siswa @endslot
 @endcomponent
 
 <div class="row">
     <div class="col-lg-12">
         <div class="d-flex flex-wrap gap-3 mb-3">
-            <a href="{{ url('admin/wali-kelas') }}">
+            <a href="{{ url('admin/siswa') }}">
                 <button class="btn btn-outline-secondary waves-effect waves-light w-md">Kembali</button>
             </a>
         </div>
         <div class="card">
-            <form action="{{ url('admin/wali-kelas') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/siswa') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     @if ($errors->any())
@@ -46,14 +46,19 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">NIP</label>
-                                        <input type="number" class="form-control" name="nip" id="verticalnav-firstname-input" placeholder="123456789">
+                                        <label for="verticalnav-firstname-input">NISN</label>
+                                        <input type="number" class="form-control" name="nisn" id="verticalnav-firstname-input" placeholder="123456789">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">Foto</label>
-                                        <input type="file" class="form-control" name="foto" id="verticalnav-firstname-input" placeholder="123456789">
+                                        <label for="verticalnav-jenis-kelamin">Kelas</label>
+                                        <select name="kelas_id" id="verticalnav-jenis-kelamin" class="form-control">
+                                            <option>Pilih Kelas</option>
+                                            @foreach ($kelas as $kls)
+                                            <option value="{{ $kls->id }}">{{ $kls->nama_kelas }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
@@ -81,6 +86,12 @@
                                         </select>
                                     </div>
                                 </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-firstname-input">Foto</label>
+                                        <input type="file" class="form-control" name="foto" id="verticalnav-firstname-input" placeholder="123456789">
+                                    </div>
+                                </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
 
                             <div class="row">
@@ -92,8 +103,8 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-email-input">Email</label>
-                                        <input type="email" class="form-control" name="email" id="verticalnav-email-input" placeholder="info@montal.com">
+                                        <label for="verticalnav-nama_orang_tua-input">nama Orang Tua</label>
+                                        <input type="text" class="form-control" name="nama_orang_tua" id="verticalnav-nama_orang_tua-input" placeholder="Alex">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
@@ -108,62 +119,25 @@
                             </div><!-- end row -->
                         </section>
 
-                        <!-- Company Document -->
-                        <h3>Detail Alamat</h3>
-                        <section>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="verticalnav-declaration-input">Provinsi</label>
-                                        <input type="text" class="form-control" name="provinsi" id="verticalnav-Declaration-input" placeholder="Provinsi">
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="verticalnav-vatno-input">Kabupaten/Kota</label>
-                                        <input type="text" class="form-control" name="kabupaten" id="verticalnav-vatno-input" placeholder="Kabupaten/Kota" />
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                            </div><!-- end row -->
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="verticalnav-cstno-input">Kecamatan</label>
-                                        <input type="text" class="form-control" name="kecamatan" id="verticalnav-cstno-input" placeholder="Kecamatan">
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="verticalnav-servicetax-input">Desa</label>
-                                        <input type="text" class="form-control" name="desa" id="verticalnav-servicetax-input" placeholder="Desa">
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="verticalnav-companyuin-input">Kode Pos</label>
-                                        <input type="number" class="form-control" name="kode_pos" id="verticalnav-companyuin-input" placeholder="Kode Pos">
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                            </div><!-- end row -->
-                        </section>
-
                         <!-- Bank Details -->
-                        <h3>Hak Akses</h3>
+                        <h3>Status</h3>
                         <section>
                             <div>
                                 <form>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label>Hak Akses</label>
-                                                <select class="form-select" name="role">
-                                                    <option selected>Pilih Hak Akses</option>
-                                                    <option value="0">Siswa/Orang Tua</option>
-                                                    <option value="1">Wali Kelas</option>
-                                                    <option value="2">Admin</option>
+                                                <label for="verticalnav-phoneno-input">Tanggal Masuk</label>
+                                                <input type="date" class="form-control" name="tanggal_masuk" id="verticalnav-phoneno-input">
+                                            </div>
+                                        </div><!-- end col-lg-6 -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label>Status</label>
+                                                <select class="form-select" name="status">
+                                                    <option>Pilih Status</option>
+                                                    <option value="0">Tidak Aktif</option>
+                                                    <option value="1">Aktif</option>
                                                 </select>
                                             </div>
                                         </div><!-- end col-lg-6 -->
@@ -183,7 +157,7 @@
                                         </div>
                                         <div>
                                             <h5>Konfirmasi</h5>
-                                            <p class="text-muted">Konfirmasi Data Wali Kelas</p>
+                                            <p class="text-muted">Konfirmasi Data Siswa</p>
                                         </div>
                                     </div>
                                 </div><!-- end col-lg-6 -->

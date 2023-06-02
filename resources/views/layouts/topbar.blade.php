@@ -257,7 +257,7 @@
     <div class="dropdown d-inline-block">
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @if (!empty(auth()->user()->wali_kelas->foto))
-            <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/photos/'. Auth::user()->wali_kelas->foto) }}" alt="Header Avatar">
+            <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/photos/wali-kelas/'. Auth::user()->wali_kelas->foto) }}" alt="Header Avatar">
             @else
             <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}" alt="Header Avatar">
             @endif

@@ -18,6 +18,7 @@ class WaliKelas extends Model
         'nama_belakang',
         'tanggal_lahir',
         'tempat_lahir',
+        'jenis_kelamin',
         'foto',
         'telp',
         'email',

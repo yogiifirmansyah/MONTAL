@@ -1,18 +1,18 @@
 @extends('layouts.master')
-@section('title') Wali Kelas @endsection
+@section('title') Siswa @endsection
 
 @section('content')
 
 @component('common-components.breadcrumb')
-@slot('pagetitle') Wali Kelas @endslot
-@slot('title') Dashboard Wali Kelas @endslot
+@slot('pagetitle') Siswa @endslot
+@slot('title') Dashboard Siswa @endslot
 @endcomponent
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{ url('admin/wali-kelas/create') }}" type="button" class="btn btn-success btn-rounded w-lg mb-5">Tambah Wali Kelas</a>
+                <a href="{{ url('admin/siswa/create') }}" type="button" class="btn btn-success btn-rounded w-lg mb-5">Tambah Siswa</a>
 
                 @if (session('success_message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,24 +25,24 @@
                     <thead>
                         <tr>
                             <th>Nama</th>
+                            <th>Kelas</th>
                             <th>Alamat</th>
-                            <th>Hak Akses</th>
-                            <th>Email</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($waliKelas as $walas)
+                        @foreach ($siswas as $siswa)
                         <tr>
-                            <td>{{ $walas->nama_depan }} {{ $walas->nama_belakang }}</td>
-                            <td>{{ $walas->alamat }}</td>
-                            <td>{{ $walas->user->role === 1 ? 'Wali Kelas':'' }}</td>
-                            <td>{{ $walas->email }}</td>
+                            <td>{{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}</td>
+                            <td>{{ $siswa->kelas->nama_kelas }}</td>
+                            <td>{{ $siswa->alamat }}</td>
+                            <td>{{ $siswa->status === 1 ? 'Aktif':'Tidak Aktif' }}</td>
                             <td>
-                                <a href="javascript:void(0)" id="deleteWaliKelas" waliKelas_id="{{ $walas->id }}"><span class="badge bg-soft-danger" data-bs-toggle="modal" data-bs-target="#myModalDelete">Hapus</span></a>
-                                <a href="{{ url('admin/wali-kelas/'.$walas->id) }}"><span class="badge bg-soft-primary">Ubah</span></a>
-                                <a href="javascript:void(0)" id="showWaliKelas" waliKelas_id="{{ $walas->id }}"><span class="badge bg-soft-warning" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Lihat Detail</span></a>
+                                <a href="javascript:void(0)" id="deleteSiswa" siswa_id="{{ $siswa->id }}"><span class="badge bg-soft-danger" data-bs-toggle="modal" data-bs-target="#myModalDelete">Hapus</span></a>
+                                <a href="{{ url('admin/siswa/'.$siswa->id) }}"><span class="badge bg-soft-primary">Ubah</span></a>
+                                <a href="javascript:void(0)" id="showSiswa" siswa_id="{{ $siswa->id }}"><span class="badge bg-soft-warning" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Lihat Detail</span></a>
                             </td>
                         </tr>
                         @endforeach
@@ -58,7 +58,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Detail Wali Kelas</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Detail Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -85,7 +85,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">No</button>
-                <button type="button" id="destroyWaliKelas" class="btn btn-danger waves-effect waves-light">Yes, Delete!</button>
+                <button type="button" id="destroySiswa" class="btn btn-danger waves-effect waves-light">Yes, Delete!</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

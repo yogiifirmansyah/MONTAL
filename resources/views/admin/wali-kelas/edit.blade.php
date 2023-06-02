@@ -57,7 +57,7 @@
                                         <input type="hidden" name="current_image" value="{{ $walas->foto }}">
                                         @if (!empty($walas->foto))
                                         <div class="p-3">
-                                            <img src="{{ asset('assets/images/photos/'. $walas->foto) }}" width="100px" class="img-fluid">
+                                            <img src="{{ asset('assets/images/photos/wali-kelas/'. $walas->foto) }}" width="100px" class="img-fluid">
                                         </div>
                                         @endif
                                     </div>
@@ -75,6 +75,16 @@
                                     <div class="mb-3">
                                         <label for="verticalnav-email-input">Tempat Lahir</label>
                                         <input type="text" class="form-control" name="tempat_lahir" id="verticalnav-email-input" placeholder="Surabaya" value="{{ $walas->tempat_lahir }}">
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-jenis-kelamin">Jenis Kelamin</label>
+                                        <select name="jenis_kelamin" id="verticalnav-jenis-kelamin" class="form-control">
+                                            <option>Pilih Jenis Kelamin</option>
+                                            <option value="L" {{ $walas->jenis_kelamin === 'L' ? 'selected':'' }}>Laki-Laki</option>
+                                            <option value="P" {{ $walas->jenis_kelamin === 'P' ? 'selected':'' }}>Perempuan</option>
+                                        </select>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->

@@ -26,6 +26,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Kelas</th>
+                            <th>Wali Kelas</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $kls->nama_kelas }}</td>
+                            <td>{{ $kls->waliKelas->nama_depan }} {{ $kls->waliKelas->nama_belakang }}</td>
                             <td>
                                 <a href="javascript:void(0)" id="deleteKelas" kelas_id="{{ $kls->id }}"><span class="badge bg-soft-danger" data-bs-toggle="modal" data-bs-target="#myModalDelete">Hapus</span></a>
                                 <a href="javascript:void(0)" id="editKelas" kelas_id="{{ $kls->id }}" data-bs-toggle="modal" data-bs-target="#myModal"><span class="badge bg-soft-primary">Ubah</span></a>
@@ -68,6 +70,18 @@
                         <label for="kelasName" class="col-md-3 col-form-label">Nama kelas</label>
                         <div class="col-md-9">
                             <input class="form-control" type="text" id="kelasName" value="">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="kelasName" class="col-md-3 col-form-label">Wali kelas</label>
+                        <div class="col-md-9">
+                            <select class="form-control" id="waliKelasId">
+                                <option>Pilih Wali Kelas</option>
+                                @foreach ($waliKelas as $walas)
+                                <option value="{{ $walas->id }}">{{ $walas->nama_depan }}{{ $walas->nama_belakang }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 

@@ -5,22 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\WaliKelas;
 
 class KelasController extends Controller
 {
     public function index()
     {
         $kelas = Kelas::all();
-        return view('admin.kelas.index', compact('kelas'));
+        $waliKelas = WaliKelas::all();
+        return view('admin.kelas.index', compact('kelas', 'waliKelas'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'waliKelasId' => 'required',
             'kelasName' => 'required|string'
         ]);
 
         $kelas = new Kelas;
+        $kelas->wali_kelas_id = $request->waliKelasId;
         $kelas->nama_kelas = $request->kelasName;
         $kelas->save();
 
@@ -38,10 +42,12 @@ class KelasController extends Controller
     {
         // dd($request->all());
         $request->validate([
+            'waliKelasId' => 'required',
             'kelasName' => 'required|string'
         ]);
 
-        $kelas = Kelas::find($id);
+        $kelas = new Kelas;
+        $kelas->wali_kelas_id = $request->waliKelasId;
         $kelas->nama_kelas = $request->kelasName;
         $kelas->save();
 

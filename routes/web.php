@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\VariabelController;
 use App\Http\Controllers\Admin\WaliKelasController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Walas\LaporanPerkembanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,21 @@ Route::middleware(['auth'])->group(function () {
 // Route Walas
 Route::middleware(['auth', 'wali-kelas'])->group(function () {
     Route::get("/dashboard-walikelas", [HomeController::class, 'walasHome']);
+
+    Route::get("/bimbingan-fisik", [LaporanPerkembanganController::class, 'bimbinganFisik']);
+    Route::get("/bimbingan-mental", [LaporanPerkembanganController::class, 'bimbinganMental']);
+    Route::get("/bimbingan-sosial", [LaporanPerkembanganController::class, 'bimbinganSosial']);
+    Route::get("/kemandirian-emosional", [LaporanPerkembanganController::class, 'kemandirianEmosional']);
+    Route::get("/kemandirian-perilaku", [LaporanPerkembanganController::class, 'kemandirianPerilaku']);
+    Route::get("/kemandirian-nilai", [LaporanPerkembanganController::class, 'kemandirianNilai']);
+
+    Route::get("/laporan-perkembangan/show/{id}", [LaporanPerkembanganController::class, 'show']);
+    Route::post("/laporan-perkembangan", [LaporanPerkembanganController::class, 'store']);
+    Route::get("/laporan-perkembangan/{id}", [LaporanPerkembanganController::class, 'edit']);
+    Route::post("/laporan-perkembangan/{id}", [LaporanPerkembanganController::class, 'update']);
+    Route::get("/laporan-perkembangan/delete/{id}", [LaporanPerkembanganController::class, 'destroy']);
 });
+
 // Route Admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get("/admin/dashboard", [AdminController::class, 'adminHome']);
@@ -63,4 +79,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get("/admin/kelas/{id}", [KelasController::class, 'edit']);
     Route::post("/admin/kelas/{id}", [KelasController::class, 'update']);
     Route::get("/admin/kelas/delete/{id}", [KelasController::class, 'destroy']);
+
+    Route::get("/admin/siswa", [SiswaController::class, 'index']);
+    Route::get("/admin/siswa/create", [SiswaController::class, 'create']);
+    Route::post("/admin/siswa", [SiswaController::class, 'store']);
+    Route::get("/admin/siswa/{id}", [SiswaController::class, 'edit']);
+    Route::post("/admin/siswa/{id}", [SiswaController::class, 'update']);
+    Route::get("/admin/siswa/delete/{id}", [SiswaController::class, 'destroy']);
+    Route::get("/admin/siswa/show/{id}", [SiswaController::class, 'show']);
 });

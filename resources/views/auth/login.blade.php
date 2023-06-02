@@ -14,7 +14,15 @@
                             <h5 class="text-primary">Welcome Back !</h5>
                             <p class="text-muted">Sign in to continue to Minible.</p>
                         </div>
-                        <div class="p-2 mt-4">
+
+                        @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+
+                        <div class="p-2 mt-3">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
