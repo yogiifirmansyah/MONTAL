@@ -24,8 +24,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        // dd($indikatorId);
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         // dd($laporanPerkembangan);
         return view('walas.bimbingan-fisik.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
@@ -41,7 +45,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         return view('walas.bimbingan-mental.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
 
@@ -56,7 +65,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         return view('walas.bimbingan-sosial.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
 
@@ -71,7 +85,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         return view('walas.kemandirian-emosional.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
 
@@ -86,7 +105,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         return view('walas.kemandirian-perilaku.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
 
@@ -101,7 +125,12 @@ class LaporanPerkembanganController extends Controller
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
         }
-        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->get();
+        $siswaId = [];
+        foreach ($siswas as $key => $value) {
+            array_push($siswaId, $value->id);
+        }
+        // dd($siswaId);
+        $laporanPerkembangan = LaporanPerkembangan::whereIn('indikator_id', $indikatorId)->whereIn('siswa_id', $siswaId)->get();
         return view('walas.kemandirian-nilai.index', compact('siswas', 'indikators', 'laporanPerkembangan'));
     }
 

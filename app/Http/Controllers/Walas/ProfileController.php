@@ -21,7 +21,6 @@ class ProfileController extends Controller
         // dd($request->all());
         $request->validate([
             'telp' => 'required',
-            'email' => 'required',
             'alamat' => 'required',
             'provinsi' => 'required',
             'kabupaten' => 'required',
@@ -31,25 +30,6 @@ class ProfileController extends Controller
         ]);
 
         $walas = WaliKelas::find($id);
-        if ($request->old_password || $request->password || $request->confirm_password) {
-            $request->validate([
-                'old_password' => 'required|min:5|max:14',
-                'password' => 'required|min:5|max:14',
-                'confirm_password' => 'required|min:5|max:14',
-            ]);
-            $user = User::find($walas->user_id);
-            if (Hash::check($request->old_password, $user->password)) {
-                if ($request->password == $request->confirm_password) {
-                    $user->password = bcrypt($request->password);
-                    $user->save();
-                } else {
-                    return redirect()->back()->with('error_message', 'Konfirmasi Password tidak sesuai!');
-                }
-            } else {
-                return redirect()->back()->with('error_message', 'Password lama tidak sesuai!');
-            }
-        }
-
         // Upload Photo
         if ($request->hasFile('foto')) {
             $image_tmp = $request->file('foto');
@@ -86,5 +66,40 @@ class ProfileController extends Controller
         $walas->save();
 
         return redirect()->back()->with('success_message', 'Data Berhasil Diubah.');
+    }
+
+    public function changePassword()
+    {
+        return view('change-password.change-password');
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        // dd($request->all());
+        $request->validate(
+            [
+                'old_password' => 'required',
+                'password' => 'required|min:6',
+                'confirm_password' => 'required|min:6|same:password',
+            ],
+            [
+                'old_password.required' => 'Password lama tidak boleh kosong!',
+                'password.required' => 'Password Baru tidak boleh kosong!',
+                'confirm_password.required' => 'Password Konfirmasi tidak boleh kosong!',
+                'password.min' => 'Password minimal 6 karakter!',
+                'confirm_password.min' => 'Password minimal 6 karakter!',
+                'confirm_password.same' => 'Konfirmasi password tidak sesuai!',
+            ]
+        );
+
+        $user = User::find($id);
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            return redirect()->back()->with('success_message', 'Password berhasil diubah!');
+        } else {
+            return redirect()->back()->with('error_message', 'Password lama tidak sesuai!');
+        }
     }
 }

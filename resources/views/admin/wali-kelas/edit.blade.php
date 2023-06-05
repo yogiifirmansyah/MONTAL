@@ -46,14 +46,14 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">NIP</label>
-                                        <input type="number" class="form-control" name="nip" id="verticalnav-firstname-input" placeholder="123456789" value="{{ $walas->nip }}">
+                                        <label for="verticalnav-nip-input">NIP</label>
+                                        <input type="number" class="form-control" name="nip" id="verticalnav-nip-input" placeholder="123456789" value="{{ $walas->nip }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">Foto</label>
-                                        <input type="file" class="form-control" name="foto" id="verticalnav-firstname-input">
+                                        <label for="verticalnav-foto-input">Foto</label>
+                                        <input type="file" class="form-control" name="foto" id="verticalnav-foto-input">
                                         <input type="hidden" name="current_image" value="{{ $walas->foto }}">
                                         @if (!empty($walas->foto))
                                         <div class="p-3">
@@ -67,20 +67,20 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-phoneno-input">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" name="tanggal_lahir" id="verticalnav-phoneno-input" placeholder="+62xxx xxxx xxxx" value="{{ $walas->tanggal_lahir }}">
+                                        <label for="verticalnav-tgl-lahir-input">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" name="tanggal_lahir" id="verticalnav-tgl-lahir-input" placeholder="+62xxx xxxx xxxx" value="{{ $walas->tanggal_lahir }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-email-input">Tempat Lahir</label>
-                                        <input type="text" class="form-control" name="tempat_lahir" id="verticalnav-email-input" placeholder="Surabaya" value="{{ $walas->tempat_lahir }}">
+                                        <label for="verticalnav-tmp-lahir-input">Tempat Lahir</label>
+                                        <input type="text" class="form-control" name="tempat_lahir" id="verticalnav-tmp-lahir-input" placeholder="Surabaya" value="{{ $walas->tempat_lahir }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-jenis-kelamin">Jenis Kelamin</label>
-                                        <select name="jenis_kelamin" id="verticalnav-jenis-kelamin" class="form-control">
+                                        <select name="jenis_kelamin" id="verticalnav-jenis-kelamin" class="form-select">
                                             <option>Pilih Jenis Kelamin</option>
                                             <option value="L" {{ $walas->jenis_kelamin === 'L' ? 'selected':'' }}>Laki-Laki</option>
                                             <option value="P" {{ $walas->jenis_kelamin === 'P' ? 'selected':'' }}>Perempuan</option>

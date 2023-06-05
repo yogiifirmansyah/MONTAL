@@ -59,14 +59,14 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">NIP</label>
-                                        <input type="number" class="form-control" readonly name="nip" id="verticalnav-firstname-input" placeholder="123456789" value="{{ auth()->user()->wali_kelas->nip }}">
+                                        <label for="verticalnav-nip-input">NIP</label>
+                                        <input type="number" class="form-control" readonly name="nip" id="verticalnav-nip-input" placeholder="123456789" value="{{ auth()->user()->wali_kelas->nip }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-firstname-input">Foto</label>
-                                        <input type="file" class="form-control" name="foto" id="verticalnav-firstname-input">
+                                        <label for="verticalnav-foto-input">Foto</label>
+                                        <input type="file" class="form-control" name="foto" id="verticalnav-foto-input">
                                         <input type="hidden" name="current_image" value="{{ auth()->user()->wali_kelas->foto }}">
                                         @if (!empty(auth()->user()->wali_kelas->foto))
                                         <div class="p-3">
@@ -80,24 +80,20 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-phoneno-input">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" readonly name="tanggal_lahir" id="verticalnav-phoneno-input" placeholder="+62xxx xxxx xxxx" value="{{ auth()->user()->wali_kelas->tanggal_lahir }}">
+                                        <label for="verticalnav-tgl-lahir-input">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" readonly name="tanggal_lahir" id="verticalnav-tgl-lahir-input" placeholder="+62xxx xxxx xxxx" value="{{ auth()->user()->wali_kelas->tanggal_lahir }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-email-input">Tempat Lahir</label>
-                                        <input type="text" class="form-control" readonly name="tempat_lahir" id="verticalnav-email-input" placeholder="Surabaya" value="{{ auth()->user()->wali_kelas->tempat_lahir }}">
+                                        <label for="verticalnav-tmp-lahir-input">Tempat Lahir</label>
+                                        <input type="text" class="form-control" readonly name="tempat_lahir" id="verticalnav-tmp-lahir-input" placeholder="Surabaya" value="{{ auth()->user()->wali_kelas->tempat_lahir }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-jenis-kelamin">Jenis Kelamin</label>
-                                        <select name="jenis_kelamin" readonly id="verticalnav-jenis-kelamin" class="form-control">
-                                            <option>Pilih Jenis Kelamin</option>
-                                            <option value="L" {{ auth()->user()->wali_kelas->jenis_kelamin === 'L' ? 'selected':'' }}>Laki-Laki</option>
-                                            <option value="P" {{ auth()->user()->wali_kelas->jenis_kelamin === 'P' ? 'selected':'' }}>Perempuan</option>
-                                        </select>
+                                        <input name="jenis_kelamin" readonly id="verticalnav-jenis-kelamin" class="form-control" value="{{ auth()->user()->wali_kelas->jenis_kelamin === 'L' ? 'Laki-Laki':'Perempuan' }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
@@ -164,49 +160,6 @@
                                     <div class="mb-3">
                                         <label for="verticalnav-companyuin-input">Kode Pos</label>
                                         <input type="number" class="form-control" name="kode_pos" id="verticalnav-companyuin-input" placeholder="Kode Pos" value="{{ auth()->user()->wali_kelas->kode_pos }}">
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                            </div><!-- end row -->
-                        </section>
-
-                        <!-- Bank Details -->
-                        <h3>Ubah Password</h3>
-                        <section>
-                            <div>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="verticalnav-servicetax-input">Password Lama</label>
-                                                <input type="password" class="form-control" name="old_password" id="verticalnav-servicetax-input" placeholder="Masukkan Password Lama">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="verticalnav-servicetax-input">Password Baru</label>
-                                                <input type="password" class="form-control" name="password" id="verticalnav-servicetax-input" placeholder="Masukkan Password Baru">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="verticalnav-servicetax-input">Konfirmasi Password Baru</label>
-                                                <input type="password" class="form-control" name="confirm_password" id="verticalnav-servicetax-input" placeholder="Masukkan Konfirmasi Password Baru">
-                                            </div>
-                                        </div><!-- end col-lg-6 -->
-                                    </div><!-- end row -->
-                                </form>
-                            </div>
-                        </section>
-
-                        <!-- Confirm Details -->
-                        <h3>Confirm Detail</h3>
-                        <section>
-                            <div class=" row justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <div class="mb-4">
-                                            <i class="mdi mdi-check-circle-outline text-success display-4"></i>
-                                        </div>
-                                        <div>
-                                            <h5>Konfirmasi</h5>
-                                            <p class="text-muted">Konfirmasi Data Wali Kelas</p>
-                                        </div>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->

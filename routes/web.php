@@ -32,6 +32,10 @@ Auth::routes();
 // Route User
 Route::middleware(['auth'])->group(function () {
     Route::get("/dashboard", [HomeController::class, 'userHome']);
+    Route::get('/profile', [ProfileController::class, 'edit']);
+    Route::post('/profile/{id}', [ProfileController::class, 'update']);
+    Route::get('/change-password', [ProfileController::class, 'changePassword']);
+    Route::post('/change-password/{id}', [ProfileController::class, 'updatePassword']);
 });
 // Route Walas
 Route::middleware(['auth', 'wali-kelas'])->group(function () {

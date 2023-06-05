@@ -79,7 +79,7 @@
                             <select class="form-control" id="waliKelasId">
                                 <option>Pilih Wali Kelas</option>
                                 @foreach ($waliKelas as $walas)
-                                <option value="{{ $walas->id }}">{{ $walas->nama_depan }}{{ $walas->nama_belakang }}</option>
+                                <option value="{{ $walas->id }}">{{ $walas->nama_depan }} {{ $walas->nama_belakang }}</option>
                                 @endforeach
                             </select>
                         </div>
