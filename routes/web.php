@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Walas\LaporanPerkembanganController;
+use App\Http\Controllers\Walas\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,9 @@ Route::middleware(['auth', 'wali-kelas'])->group(function () {
     Route::get("/laporan-perkembangan/{id}", [LaporanPerkembanganController::class, 'edit']);
     Route::post("/laporan-perkembangan/{id}", [LaporanPerkembanganController::class, 'update']);
     Route::get("/laporan-perkembangan/delete/{id}", [LaporanPerkembanganController::class, 'destroy']);
+
+    Route::get('/profile', [ProfileController::class, 'edit']);
+    Route::post('/profile/{id}', [ProfileController::class, 'update']);
 });
 
 // Route Admin
