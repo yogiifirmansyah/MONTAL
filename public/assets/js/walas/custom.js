@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(document).on("click", "#showSiswa", function (e) {
         e.preventDefault();
         var siswaId = $(this).attr("siswa_id");
+        $(".modal-title").html("Detail Siswa");
 
         $.ajax({
             type: "get",

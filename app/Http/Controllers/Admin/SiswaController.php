@@ -25,20 +25,37 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         // dd($request->file('foto'));
-        $request->validate([
-            'kelas_id' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'nisn' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'nama_orang_tua' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
-            'tanggal_masuk' => 'required',
-            'status' => 'required',
-        ]);
+        $request->validate(
+            [
+                'kelas_id' => 'required',
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'nisn' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'nama_orang_tua' => 'required',
+                'telp' => 'required',
+                'alamat' => 'required',
+                'tanggal_masuk' => 'required',
+                'status' => 'required',
+            ],
+            [
+                'kelas_id.required' => 'Kelas tidak boleh kosong!',
+                'nama_depan.required' => 'Nama depan tidak boleh kosong!',
+                'nama_belakang.required' => 'Nama Belakang tidak boleh kosong!',
+                'nisn.required' => 'NISN tidak boleh kosong!',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
+                'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'nama_orang_tua.required' => 'Nama orang tua tidak boleh kosong!',
+                'telp.required' => 'Telepon tidak boleh kosong!',
+                'alamat.required' => 'Alamat tidak boleh kosong!',
+                'tanggal_masuk.required' => 'Tanggal masuk tidak boleh kosong!',
+                'status.required' => 'Status tidak boleh kosong!',
+            ]
+
+        );
 
         // Upload Photo
         if ($request->hasFile('foto')) {
@@ -88,20 +105,36 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->file('foto'));
-        $request->validate([
-            'kelas_id' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'nisn' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'nama_orang_tua' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
-            'tanggal_masuk' => 'required',
-            'status' => 'required',
-        ]);
+        $request->validate(
+            [
+                'kelas_id' => 'required',
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'nisn' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'nama_orang_tua' => 'required',
+                'telp' => 'required',
+                'alamat' => 'required',
+                'tanggal_masuk' => 'required',
+                'status' => 'required',
+            ],
+            [
+                'kelas_id.required' => 'Kelas tidak boleh kosong!',
+                'nama_depan.required' => 'Nama depan tidak boleh kosong!',
+                'nama_belakang.required' => 'Nama Belakang tidak boleh kosong!',
+                'nisn.required' => 'NISN tidak boleh kosong!',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
+                'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'nama_orang_tua.required' => 'Nama orang tua tidak boleh kosong!',
+                'telp.required' => 'Telepon tidak boleh kosong!',
+                'alamat.required' => 'Alamat tidak boleh kosong!',
+                'tanggal_masuk.required' => 'Tanggal masuk tidak boleh kosong!',
+                'status.required' => 'Status tidak boleh kosong!',
+            ]
+        );
 
 
         $siswa = Siswa::find($id);

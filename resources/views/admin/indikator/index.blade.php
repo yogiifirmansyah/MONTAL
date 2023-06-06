@@ -70,7 +70,7 @@
                         <label class="col-md-3 col-form-label">Siswa</label>
                         <div class="col-md-9">
                             <select class="form-select" id="variabelId">
-                                <option value="">Pilih Variabel</option>
+                                <option>Pilih Variabel</option>
                                 @foreach ($variabels as $variabel)
                                 <option value="{{ $variabel->id }}">{{ $variabel->nama_variabel }}</option>
                                 @endforeach

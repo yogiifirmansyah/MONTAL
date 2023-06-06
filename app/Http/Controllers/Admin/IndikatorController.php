@@ -19,10 +19,16 @@ class IndikatorController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'indikatorName' => 'required|string',
-            'variabelId' => 'required'
-        ]);
+        $request->validate(
+            [
+                'indikatorName' => 'required|string',
+                'variabelId' => 'required|integer'
+            ],
+            [
+                'indikatorName.required' => 'Nama indikator tidak boleh kosong!',
+                'variabelId.integer' => 'Belum memilih variabel!',
+            ]
+        );
 
         $indikator = new Indikator;
         $indikator->nama_indikator = $request->indikatorName;
@@ -43,10 +49,16 @@ class IndikatorController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'indikatorName' => 'required|string',
-            'variabelId' => 'required'
-        ]);
+        $request->validate(
+            [
+                'indikatorName' => 'required|string',
+                'variabelId' => 'required|integer'
+            ],
+            [
+                'indikatorName.required' => 'Nama indikator tidak boleh kosong!',
+                'variabelId.integer' => 'Belum memilih variabel!',
+            ]
+        );
 
         $indikator = Indikator::find($id);
         $indikator->nama_indikator = $request->indikatorName;

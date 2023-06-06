@@ -19,8 +19,11 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'waliKelasId' => 'required',
+            'waliKelasId' => 'required|integer',
             'kelasName' => 'required|string'
+        ], [
+            'waliKelasId.integer' => 'Belum memilih wali kelas!',
+            'kelasName.required' => 'Nama kelas tidak boleh kosong!',
         ]);
 
         $kelas = new Kelas;
@@ -42,11 +45,14 @@ class KelasController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'waliKelasId' => 'required',
+            'waliKelasId' => 'required|integer',
             'kelasName' => 'required|string'
+        ], [
+            'waliKelasId.integer' => 'Belum memilih wali kelas!',
+            'kelasName.required' => 'Nama kelas tidak boleh kosong!',
         ]);
 
-        $kelas = new Kelas;
+        $kelas = Kelas::find($id);
         $kelas->wali_kelas_id = $request->waliKelasId;
         $kelas->nama_kelas = $request->kelasName;
         $kelas->save();

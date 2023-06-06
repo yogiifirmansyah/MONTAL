@@ -24,23 +24,42 @@ class WaliKelasController extends Controller
     public function store(Request $request)
     {
         // dd($request->file('foto'));
-        $request->validate([
-            'nip' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'tanggal_lahir' => 'required',
-            'tempat_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'telp' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-            'kecamatan' => 'required',
-            'desa' => 'required',
-            'kode_pos' => 'required',
-            'role' => 'required',
-        ]);
+        $request->validate(
+            [
+                'nip' => 'required',
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'tanggal_lahir' => 'required',
+                'tempat_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'telp' => 'required',
+                'email' => 'required',
+                'alamat' => 'required',
+                'provinsi' => 'required',
+                'kabupaten' => 'required',
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'kode_pos' => 'required',
+                'role' => 'required',
+            ],
+            [
+                'nip.required' => 'NIP tidak boleh kosong!',
+                'nama_depan.required' => 'Nama depan tidak boleh kosong!',
+                'nama_belakang.required' => 'Nama Belakang tidak boleh kosong!',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
+                'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'telp.required' => 'Telepon tidak boleh kosong!',
+                'email.required' => 'Email tidak boleh kosong!',
+                'alamat.required' => 'Alamat tidak boleh kosong!',
+                'provinsi.required' => 'Provinsi tidak boleh kosong!',
+                'kabupaten.required' => 'Kabupaten tidak boleh kosong!',
+                'kecamatan.required' => 'Kecamatan tidak boleh kosong!',
+                'desa.required' => 'Desa tidak boleh kosong!',
+                'kode_pos.required' => 'Kode Pos tidak boleh kosong!',
+                'role.required' => 'Role tidak boleh kosong!',
+            ]
+        );
 
         // // Store data in database users
         $user = new User;
@@ -101,23 +120,42 @@ class WaliKelasController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'nip' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'tanggal_lahir' => 'required',
-            'tempat_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'telp' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-            'kecamatan' => 'required',
-            'desa' => 'required',
-            'kode_pos' => 'required',
-            'role' => 'required',
-        ]);
+        $request->validate(
+            [
+                'nip' => 'required',
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'tanggal_lahir' => 'required',
+                'tempat_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'telp' => 'required',
+                'email' => 'required',
+                'alamat' => 'required',
+                'provinsi' => 'required',
+                'kabupaten' => 'required',
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'kode_pos' => 'required',
+                'role' => 'required',
+            ],
+            [
+                'nip.required' => 'NIP tidak boleh kosong!',
+                'nama_depan.required' => 'Nama depan tidak boleh kosong!',
+                'nama_belakang.required' => 'Nama Belakang tidak boleh kosong!',
+                'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
+                'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
+                'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'telp.required' => 'Telepon tidak boleh kosong!',
+                'email.required' => 'Email tidak boleh kosong!',
+                'alamat.required' => 'Alamat tidak boleh kosong!',
+                'provinsi.required' => 'Provinsi tidak boleh kosong!',
+                'kabupaten.required' => 'Kabupaten tidak boleh kosong!',
+                'kecamatan.required' => 'Kecamatan tidak boleh kosong!',
+                'desa.required' => 'Desa tidak boleh kosong!',
+                'kode_pos.required' => 'Kode Pos tidak boleh kosong!',
+                'role.required' => 'Role tidak boleh kosong!',
+            ]
+        );
 
         $walas = WaliKelas::find($id);
         $user_id = User::where('id', $walas->user_id)->pluck('id')->first();

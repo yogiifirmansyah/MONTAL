@@ -348,7 +348,8 @@ $(document).ready(function () {
                     window.location.reload(true);
                 },
                 error: function (error) {
-                    const errorMessage = error.responseJSON.message;
+                    let errorMessage = error.responseJSON.message;
+                    // console.log(errorMessage);
                     $("#errorMessage").html(`
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong>

@@ -137,11 +137,19 @@ class LaporanPerkembanganController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
-            'siswaId' => 'required|integer',
-            'indikatorId' => 'required|integer',
-            'nilai' => 'required|numeric',
-        ]);
+        $request->validate(
+            [
+                'siswaId' => 'required|integer',
+                'indikatorId' => 'required|integer',
+                'nilai' => 'required|numeric',
+            ],
+            [
+                'siswaId.integer' => 'Belum memilih siswa!',
+                'indikatorId.integer' => 'Belum memilih indikator!',
+                'nilai.required' => 'Nilai tidak boleh kosong!',
+                'nilai.numeric' => 'Nilai harus menggunakan angka!',
+            ]
+        );
 
         $laporanPerkembangan = new LaporanPerkembangan();
         $laporanPerkembangan->siswa_id = $request->siswaId;
@@ -176,9 +184,15 @@ class LaporanPerkembanganController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'nilai' => 'required|numeric',
-        ]);
+        $request->validate(
+            [
+                'nilai' => 'required|numeric',
+            ],
+            [
+                'nilai.required' => 'Nilai tidak boleh kosong!',
+                'nilai.numeric' => 'Nilai harus menggunakan angka!',
+            ]
+        );
 
         $laporanPerkembangan = LaporanPerkembangan::find($id);
         $laporanPerkembangan->nilai = $request->nilai;

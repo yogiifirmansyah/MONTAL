@@ -16,9 +16,14 @@ class VariabelController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'variabelName' => 'required|string'
-        ]);
+        $request->validate(
+            [
+                'variabelName' => 'required|string'
+            ],
+            [
+                'variabelName.required' => 'Nama variabel tidak boleh kosong!'
+            ]
+        );
 
         $variabel = new Variabel;
         $variabel->nama_variabel = $request->variabelName;
@@ -37,9 +42,14 @@ class VariabelController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'variabelName' => 'required|string'
-        ]);
+        $request->validate(
+            [
+                'variabelName' => 'required|string'
+            ],
+            [
+                'variabelName.required' => 'Nama variabel tidak boleh kosong!'
+            ]
+        );
 
         $variabel = Variabel::find($id);
         $variabel->nama_variabel = $request->variabelName;
