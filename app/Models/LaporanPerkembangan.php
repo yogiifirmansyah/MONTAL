@@ -26,4 +26,15 @@ class LaporanPerkembangan extends Model
     {
         return $this->belongsTo(Indikator::class, 'indikator_id', 'id');
     }
+
+    public static function nilaiRataRata($siswaId)
+    {
+        $laporanPerkembangan = LaporanPerkembangan::where('siswa_id', $siswaId)->get();
+        $nilai = [];
+        foreach ($laporanPerkembangan as $key => $value) {
+            array_push($nilai, $value->nilai);
+        }
+        $hasil = array_sum($nilai) / count($nilai);
+        return number_format($hasil, 2, '.', '');
+    }
 }

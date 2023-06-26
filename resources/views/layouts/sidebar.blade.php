@@ -5,23 +5,19 @@
     <div class="navbar-brand-box">
         <a href="{{url('index')}}" class="logo logo-dark">
             <span class="logo-sm">
-                {{-- <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22"> --}}
-                Montal
+                <img src="{{ URL::asset('/assets/images/logovokasi.png') }}" alt="" height="30">
             </span>
             <span class="logo-lg">
-                {{-- <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="20"> --}}
-                Montal
+                <img src="{{ URL::asset('/assets/images/logovokasi.png') }}" alt="" height="90">
             </span>
         </a>
 
         <a href="{{url('index')}}" class="logo logo-light">
             <span class="logo-sm">
-                {{-- <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22"> --}}
-                Montal
+                <img src="{{ URL::asset('/assets/images/logovokasi.png') }}" alt="" height="30">
             </span>
             <span class="logo-lg">
-                {{-- <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="20"> --}}
-                Montal
+                <img src="{{ URL::asset('/assets/images/logovokasi.png') }}" alt="" height="90">
             </span>
         </a>
     </div>
@@ -82,6 +78,12 @@
                     <a href="{{ url('dashboard-walikelas') }}">
                         <i class="dripicons-home"></i><span class="badge rounded-pill bg-primary float-end"></span>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/siswa') }}">
+                        <i class="dripicons-user-group"></i>
+                        <span>Siswa</span>
                     </a>
                 </li>
                 <li>

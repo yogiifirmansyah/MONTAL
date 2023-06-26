@@ -167,7 +167,7 @@ class SiswaController extends Controller
         $siswa->nama_depan = $request->nama_depan;
         $siswa->nama_belakang = $request->nama_belakang;
         $siswa->nisn = $request->nisn;
-        $siswa->foto = $request->foto;
+        $siswa->foto = $image_name;
         $siswa->tempat_lahir = $request->tempat_lahir;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
         $siswa->jenis_kelamin = $request->jenis_kelamin;

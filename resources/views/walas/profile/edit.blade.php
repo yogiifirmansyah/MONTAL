@@ -3,7 +3,7 @@
 
 @section('content')
 @component('common-components.breadcrumb')
-@slot('pagetitle') Wali Kelas @endslot
+@slot('pagetitle') Simontal @endslot
 @slot('title') Ubah Data Wali Kelas @endslot
 @endcomponent
 

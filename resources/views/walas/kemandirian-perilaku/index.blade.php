@@ -4,7 +4,7 @@
 @section('content')
 
 @component('common-components.breadcrumb')
-@slot('pagetitle') Kemandirian Perilaku @endslot
+@slot('pagetitle') Simontal @endslot
 @slot('title') Dashboard Kemandirian Perilaku @endslot
 @endcomponent
 

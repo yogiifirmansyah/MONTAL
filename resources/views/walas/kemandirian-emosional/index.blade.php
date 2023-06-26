@@ -4,7 +4,7 @@
 @section('content')
 
 @component('common-components.breadcrumb')
-@slot('pagetitle') Kemandirian Emosional @endslot
+@slot('pagetitle') Simontal @endslot
 @slot('title') Dashboard Kemandirian Emosional @endslot
 @endcomponent
 

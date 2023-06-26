@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LaporanPerkembanganController extends Controller
 {
+    public function siswa()
+    {
+        $walas = WaliKelas::where('user_id', auth()->user()->id)->first();
+        $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
+        $siswas = Siswa::where('kelas_id', $kelas->id)->where('status', 1)->get();
+
+        return view('walas.siswa.index', compact('siswas'));
+    }
+
     public function bimbinganFisik()
     {
         $WaliKelasId = WaliKelas::where('user_id', Auth::user()->id)->pluck('id')->first();
@@ -20,6 +29,7 @@ class LaporanPerkembanganController extends Controller
         $siswas = Siswa::where('kelas_id', $kelasId)->where('status', 1)->get();
 
         $indikators = Indikator::where('variabel_id', 1)->get();
+        // dd($indikators);
         $indikatorId = [];
         foreach ($indikators as $key => $value) {
             array_push($indikatorId, $value->id);
@@ -136,7 +146,7 @@ class LaporanPerkembanganController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        $laporanPerkembangan = LaporanPerkembangan::where('indikator_id', $request->indikatorId)->where('siswa_id', $request->siswaId)->first();
         $request->validate(
             [
                 'siswaId' => 'required|integer',
@@ -151,14 +161,23 @@ class LaporanPerkembanganController extends Controller
             ]
         );
 
-        $laporanPerkembangan = new LaporanPerkembangan();
-        $laporanPerkembangan->siswa_id = $request->siswaId;
-        $laporanPerkembangan->indikator_id = $request->indikatorId;
-        $laporanPerkembangan->nilai = $request->nilai;
-        $laporanPerkembangan->save();
+        if (!empty($laporanPerkembangan)) {
+            $laporanPerkembangan = LaporanPerkembangan::find($laporanPerkembangan->id);
+            $laporanPerkembangan->nilai = $request->nilai;
+            $laporanPerkembangan->save();
 
-        session()->flash('success_message', 'Data Berhasil Ditambahkan');
-        return response()->json(['success' => true]);
+            session()->flash('success_message', 'Data Berhasil Diubah');
+            return response()->json(['success' => true]);
+        } else {
+            $laporanPerkembangan = new LaporanPerkembangan();
+            $laporanPerkembangan->siswa_id = $request->siswaId;
+            $laporanPerkembangan->indikator_id = $request->indikatorId;
+            $laporanPerkembangan->nilai = $request->nilai;
+            $laporanPerkembangan->save();
+
+            session()->flash('success_message', 'Data Berhasil Ditambahkan');
+            return response()->json(['success' => true]);
+        }
     }
 
     public function show($id)

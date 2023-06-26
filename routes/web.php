@@ -36,10 +36,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/{id}', [ProfileController::class, 'update']);
     Route::get('/change-password', [ProfileController::class, 'changePassword']);
     Route::post('/change-password/{id}', [ProfileController::class, 'updatePassword']);
+    Route::get('/siswa/detail-nilai/{id}', [HomeController::class, 'detailNilaiSiswa']);
 });
 // Route Walas
 Route::middleware(['auth', 'wali-kelas'])->group(function () {
     Route::get("/dashboard-walikelas", [HomeController::class, 'walasHome']);
+
+    Route::get("/siswa", [LaporanPerkembanganController::class, 'siswa']);
 
     Route::get("/bimbingan-fisik", [LaporanPerkembanganController::class, 'bimbinganFisik']);
     Route::get("/bimbingan-mental", [LaporanPerkembanganController::class, 'bimbinganMental']);

@@ -15,6 +15,77 @@ Admin
 @endslot
 @endcomponent
 
+<?php
+
+use App\Models\LaporanPerkembangan; ?>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                @if (session('success_message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Sukses!</strong> {{ session('success_message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Kelas</th>
+                            <th>Jumlah Indikator</th>
+                            <th>Nilai Rata Rata</th>
+                            <th>Keterangan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($siswas as $siswa)
+                        <tr>
+                            <td>{{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}</td>
+                            <td>{{ $siswa->kelas->nama_kelas }}</td>
+                            <td>{{ $siswa->laporan_perkembangans->count() }}/15</td>
+                            <td>
+                                <?=
+                                LaporanPerkembangan::nilaiRataRata($siswa->id)
+                                ?>
+                            </td>
+                            <td>
+                                @if (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.75)
+                                A+
+                                @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.75) A @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.25 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.50) A- @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.00 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.25) B+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.75 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.00) B @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.75) B- @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.25 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.50) C+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.00 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.25) C+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 1.75 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.00) C @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 1.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 1.75) C- @else D @endif </td>
+                            <td>
+                                <a href="javascript:void(0)" id="showSiswa" siswa_id="{{ $siswa->id }}"><span class="badge bg-soft-warning" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Lihat Detail Nilai</span></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
+<!--  Large modal example -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Detail Nilai Siswa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<?php /*
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="card">
@@ -96,8 +167,6 @@ Admin
         </div>
     </div> <!-- end col-->
 </div> <!-- end row-->
-
-<?php /* 
 
 <div class="row">
     <div class="col-xl-8">
@@ -681,6 +750,12 @@ Admin
 
 @endsection
 @section('script')
+<script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/libs/jszip/jszip.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script>
+<!-- Custom JS -->
+<script src="{{URL::asset('assets/js/user/custom.js')}}"></script>
 <!-- apexcharts -->
 <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 

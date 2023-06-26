@@ -13,7 +13,7 @@ Register
 
                         <div class="text-center mt-2">
                             <h5 class="text-primary">Register Account</h5>
-                            <p class="text-muted">Get your free Minible account now.</p>
+                            <p class="text-muted">Get your free Simontal account now.</p>
                         </div>
                         <div class="p-2 mt-4">
                             <form method="POST" action="{{ route('register') }}">
@@ -70,6 +70,7 @@ Register
                                     <button class="btn btn-primary w-sm waves-effect waves-light" type="submit">Register</button>
                                 </div>
 
+                                <?php /* 
                                 <div class="mt-4 text-center">
                                     <div class="signin-other-title">
                                         <h5 class="font-size-14 mb-3 title">Sign up using</h5>
@@ -94,6 +95,7 @@ Register
                                         </li>
                                     </ul>
                                 </div>
+                                */ ?>
 
                                 <div class="mt-4 text-center">
                                     <p class="text-muted mb-0">Already have an account ? <a href="{{ url('login') }}" class="fw-medium text-primary"> Login</a></p>
@@ -106,7 +108,7 @@ Register
                 <div class="mt-5 text-center">
                     <p>© <script>
                             document.write(new Date().getFullYear())
-                        </script> Montal</p>
+                        </script> Simontal</p>
                 </div>
 
             </div>

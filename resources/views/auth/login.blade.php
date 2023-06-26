@@ -12,7 +12,7 @@
                     <div class="card-body p-4">
                         <div class="text-center mt-2">
                             <h5 class="text-primary">Welcome Back !</h5>
-                            <p class="text-muted">Sign in to continue to Minible.</p>
+                            <p class="text-muted">Sign in to continue to Simontal.</p>
                         </div>
 
                         @if (session('error'))
@@ -62,6 +62,7 @@
                                         In</button>
                                 </div>
 
+                                <?php /* 
                                 <div class="mt-4 text-center">
                                     <div class="signin-other-title">
                                         <h5 class="font-size-14 mb-3 title">Sign in with</h5>
@@ -86,6 +87,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                */ ?>
 
                                 <div class="mt-4 text-center">
                                     <p class="mb-0">Don't have an account ? <a href="{{ url('register') }}" class="fw-medium text-primary"> Signup now </a> </p>
@@ -99,7 +101,7 @@
                 <div class="mt-5 text-center">
                     <p>© <script>
                             document.write(new Date().getFullYear())
-                        </script> Montal</p>
+                        </script> Simontal</p>
                 </div>
 
             </div>

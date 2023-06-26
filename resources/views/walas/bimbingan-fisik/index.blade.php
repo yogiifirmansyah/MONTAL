@@ -4,7 +4,7 @@
 @section('content')
 
 @component('common-components.breadcrumb')
-@slot('pagetitle') Bimbingan Fisik @endslot
+@slot('pagetitle') Simontal @endslot
 @slot('title') Dashboard Bimbingan Fisik @endslot
 @endcomponent
 
