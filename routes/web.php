@@ -23,9 +23,6 @@ use App\Http\Controllers\Walas\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 Auth::routes();
 
@@ -38,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/change-password/{id}', [ProfileController::class, 'updatePassword']);
     Route::get('/siswa/detail-nilai/{id}', [HomeController::class, 'detailNilaiSiswa']);
 });
+
+Route::get('/', function () {
+    return view('before-login');
+});
+
 // Route Walas
 Route::middleware(['auth', 'wali-kelas'])->group(function () {
     Route::get("/dashboard-walikelas", [HomeController::class, 'walasHome']);
