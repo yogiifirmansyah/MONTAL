@@ -80,7 +80,19 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <li {{ Request::is('instrumen-1*') ? 'class=mm-active':'' }}>
+                    <a href="{{ url('instrumen-1') }}">
+                        <i class="dripicons-view-list"></i><span class="badge rounded-pill bg-primary float-end"></span>
+                        <span>Instrumen 1</span>
+                    </a>
+                </li>
+                <li {{ Request::is('instrumen-2*') ? 'class=mm-active':'' }}>
+                    <a href="{{ url('instrumen-2') }}">
+                        <i class="dripicons-view-list-large"></i><span class="badge rounded-pill bg-primary float-end"></span>
+                        <span>Instrumen 2</span>
+                    </a>
+                </li>
+                <li {{ Request::is('siswa*') ? 'class=mm-active':'' }}>
                     <a href="{{ url('/siswa') }}">
                         <i class="dripicons-user-group"></i>
                         <span>Siswa</span>
@@ -125,7 +137,7 @@
                     </a>
                 </li>
                 @else
-                <li>
+                <li {{ Request::is('dashboard*') ? 'class=mm-active':'' }}>
                     <a href="{{ url('dashboard') }}">
                         <i class="dripicons-home"></i><span class="badge rounded-pill bg-primary float-end"></span>
                         <span>Dashboard</span>

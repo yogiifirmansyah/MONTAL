@@ -6,6 +6,8 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Date;
 use Intervention\Image\Facades\Image;
 
 class SiswaController extends Controller
@@ -24,7 +26,7 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->file('foto'));
+        // dd($request->all());
         $request->validate(
             [
                 'kelas_id' => 'required',
@@ -34,7 +36,10 @@ class SiswaController extends Controller
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
                 'jenis_kelamin' => 'required',
+                'agama' => 'required',
+                'anak_ke.*' => 'required',
                 'nama_orang_tua' => 'required',
+                'pekerjaan_orang_tua' => 'required',
                 'telp' => 'required',
                 'alamat' => 'required',
                 'tanggal_masuk' => 'required',
@@ -48,7 +53,10 @@ class SiswaController extends Controller
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
                 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
                 'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'agama.required' => 'Agama tidak boleh kosong!',
+                'anak_ke[].required' => 'Anak ke dari jumlah bersaudara tidak boleh kosong!',
                 'nama_orang_tua.required' => 'Nama orang tua tidak boleh kosong!',
+                'pekerjaan_orang_tua.required' => 'Pekerjaan orang tua tidak boleh kosong!',
                 'telp.required' => 'Telepon tidak boleh kosong!',
                 'alamat.required' => 'Alamat tidak boleh kosong!',
                 'tanggal_masuk.required' => 'Tanggal masuk tidak boleh kosong!',
@@ -85,7 +93,10 @@ class SiswaController extends Controller
         $siswa->tempat_lahir = $request->tempat_lahir;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
         $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->agama = $request->agama;
+        $siswa->anak_ke = implode(',', $request->anak_ke);
         $siswa->nama_orang_tua = $request->nama_orang_tua;
+        $siswa->pekerjaan_orang_tua = $request->pekerjaan_orang_tua;
         $siswa->telp = $request->telp;
         $siswa->alamat = $request->alamat;
         $siswa->tanggal_masuk = $request->tanggal_masuk;
@@ -104,7 +115,7 @@ class SiswaController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->file('foto'));
+        // dd($request->all());
         $request->validate(
             [
                 'kelas_id' => 'required',
@@ -114,7 +125,10 @@ class SiswaController extends Controller
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
                 'jenis_kelamin' => 'required',
+                'agama' => 'required',
+                'anak_ke.*' => 'required',
                 'nama_orang_tua' => 'required',
+                'pekerjaan_orang_tua' => 'required',
                 'telp' => 'required',
                 'alamat' => 'required',
                 'tanggal_masuk' => 'required',
@@ -128,12 +142,16 @@ class SiswaController extends Controller
                 'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong!',
                 'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong!',
                 'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong!',
+                'agama.required' => 'Agama tidak boleh kosong!',
+                'anak_ke[].required' => 'Anak ke dari jumlah bersaudara tidak boleh kosong!',
                 'nama_orang_tua.required' => 'Nama orang tua tidak boleh kosong!',
+                'pekerjaan_orang_tua.required' => 'Pekerjaan orang tua tidak boleh kosong!',
                 'telp.required' => 'Telepon tidak boleh kosong!',
                 'alamat.required' => 'Alamat tidak boleh kosong!',
                 'tanggal_masuk.required' => 'Tanggal masuk tidak boleh kosong!',
                 'status.required' => 'Status tidak boleh kosong!',
             ]
+
         );
 
 
@@ -171,7 +189,10 @@ class SiswaController extends Controller
         $siswa->tempat_lahir = $request->tempat_lahir;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
         $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->agama = $request->agama;
+        $siswa->anak_ke = implode(',', $request->anak_ke);
         $siswa->nama_orang_tua = $request->nama_orang_tua;
+        $siswa->pekerjaan_orang_tua = $request->pekerjaan_orang_tua;
         $siswa->telp = $request->telp;
         $siswa->alamat = $request->alamat;
         $siswa->tanggal_masuk = $request->tanggal_masuk;
@@ -201,6 +222,10 @@ class SiswaController extends Controller
     {
         // dd($id);
         $siswa = Siswa::find($id);
-        return response()->json($siswa);
+        $usia = Carbon::parse($siswa->tanggal_lahir)->age;
+        return response()->json([
+            'siswa' => $siswa,
+            'usia' => $usia,
+        ]);
     }
 }

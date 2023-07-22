@@ -23,7 +23,10 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('agama');
+            $table->string('anak_ke');
             $table->string('nama_orang_tua');
+            $table->string('pekerjaan_orang_tua');
             $table->string('telp');
             $table->string('alamat');
             $table->date('tanggal_masuk');

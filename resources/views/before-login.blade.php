@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simontal</title>
     <link rel="stylesheet" href="{{ ('assets/css/custom.css') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('/assets/images/logovokasi.png') }}">
 </head>
 
 <body>

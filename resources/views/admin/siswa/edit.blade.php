@@ -52,9 +52,9 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-kelas">Kelas</label>
+                                        <label for="verticalnav-kelas">Pilih Kelas</label>
                                         <select name="kelas_id" id="verticalnav-kelas" class="form-select">
-                                            <option>Pilih Kelas</option>
+                                            <option></option>
                                             @foreach ($kelas as $kls)
                                             <option value="{{ $kls->id }}" {{ $kls->id === $siswa->kelas_id ? 'selected':'' }}>{{ $kls->nama_kelas }}</option>
                                             @endforeach
@@ -78,12 +78,34 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-jenis-kelamin">Jenis Kelamin</label>
+                                        <label for="verticalnav-jenis-kelamin">Pilih Jenis Kelamin</label>
                                         <select name="jenis_kelamin" id="verticalnav-jenis-kelamin" class="form-select">
-                                            <option>Pilih Jenis Kelamin</option>
+                                            <option></option>
                                             <option value="L" {{ $siswa->jenis_kelamin === 'L' ? 'selected':'' }}>Laki-Laki</option>
                                             <option value="P" {{ $siswa->jenis_kelamin === 'P' ? 'selected':'' }}>Perempuan</option>
                                         </select>
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-agama">Pilih Agama</label>
+                                        <select name="agama" id="verticalnav-agama" class="form-select">
+                                            <option {{ $siswa->agama === 'Islam' ? 'selected':'' }}>Islam</option>
+                                            <option {{ $siswa->agama === 'Kristen' ? 'selected':'' }}>Kristen</option>
+                                            <option {{ $siswa->agama === 'Katolik' ? 'selected':'' }}>Katolik</option>
+                                            <option {{ $siswa->agama === 'Hindu' ? 'selected':'' }}>Hindu</option>
+                                            <option {{ $siswa->agama === 'Budha' ? 'selected':'' }}>Budha</option>
+                                            <option {{ $siswa->agama === 'Konghucu' ? 'selected':'' }}>Konghucu</option>
+                                        </select>
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                            </div><!-- end row -->
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-phoneno-input">No Hp/Whatsapp</label>
+                                        <input type="number" class="form-control" name="telp" id="verticalnav-phoneno-input" placeholder="+62xxx xxxx xxxx" value="{{ $siswa->telp }}">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
@@ -98,20 +120,27 @@
                                         @endif
                                     </div>
                                 </div><!-- end col-lg-6 -->
-                            </div><!-- end row -->
-
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-phoneno-input">No Hp/Whatsapp</label>
-                                        <input type="number" class="form-control" name="telp" id="verticalnav-phoneno-input" placeholder="+62xxx xxxx xxxx" value="{{ $siswa->telp }}">
+                                        <label for="verticalnav-nama_orang_tua-input">Nama Orang Tua/Wali</label>
+                                        <input type="text" class="form-control" name="nama_orang_tua" id="verticalnav-nama_orang_tua-input" placeholder="Contoh: Alex Munster" value="{{ $siswa->nama_orang_tua }}" />
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-nama_orang_tua-input">Nama Orang Tua</label>
-                                        <input type="text" class="form-control" readonly name="nama_orang_tua" id="verticalnav-nama_orang_tua-input" placeholder="info@montal.com" value="{{ $siswa->nama_orang_tua }}" />
+                                        <label for="verticalnav-pekerjaan_orang_tua-input">Pekerjaan Orang Tua/Wali</label>
+                                        <input type="text" class="form-control" name="pekerjaan_orang_tua" id="verticalnav-pekerjaan_orang_tua-input" placeholder="Contoh: Karyawan Swasta" value="{{ $siswa->pekerjaan_orang_tua }}">
                                     </div>
+                                </div><!-- end col-lg-6 -->
+                                <?php
+                                $anak_ke =  explode(',', $siswa->anak_ke);
+                                ?>
+                                <div class="col-lg-6 d-flex align-items-center">
+                                    <span for="verticalnav-anak_ke">Anak&nbsp;ke</span>
+                                    <input type="text" class="form-control mx-2" name="anak_ke[]" id="verticalnav-anak_ke" placeholder="Contoh: 2" value="{{ $anak_ke[0] }}">
+                                    <span for="verticalnav-anak_ke">Dari</span>
+                                    <input type="text" class="form-control mx-2" name="anak_ke[]" id="verticalnav-anak_ke" placeholder="Contoh: 3" value="{{ $anak_ke[1] }}">
+                                    <span>Bersaudara</span>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
 

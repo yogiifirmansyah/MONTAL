@@ -19,10 +19,11 @@
                 @csrf
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                         @endforeach
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
                     <h4 class="card-title mb-4">Option</h4>
@@ -35,26 +36,26 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-firstname-input">Nama Depan</label>
-                                        <input type="text" class="form-control" name="nama_depan" id="verticalnav-firstname-input" placeholder="Jhon">
+                                        <input type="text" class="form-control" name="nama_depan" id="verticalnav-firstname-input" value="{{ old('nama_depan') }}" placeholder="Jhon">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-lastname-input">Nama Belakang</label>
-                                        <input type="text" class="form-control" name="nama_belakang" id="verticalnav-lastname-input" placeholder="Doe">
+                                        <input type="text" class="form-control" name="nama_belakang" id="verticalnav-lastname-input" value="{{ old('nama_belakang') }}" placeholder="Doe">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-nisn-input">NISN</label>
-                                        <input type="number" class="form-control" name="nisn" id="verticalnav-nisn-input" placeholder="123456789">
+                                        <input type="number" class="form-control" name="nisn" id="verticalnav-nisn-input" value="{{ old('nisn') }}" placeholder="123456789">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-kelas">Kelas</label>
+                                        <label for="verticalnav-kelas">Pilih Kelas</label>
                                         <select name="kelas_id" id="verticalnav-kelas" class="form-select">
-                                            <option>Pilih Kelas</option>
+                                            <option></option>
                                             @foreach ($kelas as $kls)
                                             <option value="{{ $kls->id }}">{{ $kls->nama_kelas }}</option>
                                             @endforeach
@@ -67,20 +68,20 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-tgl-lahir-input">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" name="tanggal_lahir" id="verticalnav-tgl-lahir-input" placeholder="+62xxx xxxx xxxx">
+                                        <input type="date" class="form-control" name="tanggal_lahir" id="verticalnav-tgl-lahir-input" value="{{ old('tanggal_lahir') }}" placeholder="+62xxx xxxx xxxx">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-tmp-lahir-input">Tempat Lahir</label>
-                                        <input type="text" class="form-control" name="tempat_lahir" id="verticalnav-tmp-lahir-input" placeholder="Surabaya">
+                                        <input type="text" class="form-control" name="tempat_lahir" id="verticalnav-tmp-lahir-input" value="{{ old('tempat_lahir') }}" placeholder="Surabaya">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-jenis-kelamin">Jenis Kelamin</label>
+                                        <label for="verticalnav-jenis-kelamin">Pilih Jenis Kelamin</label>
                                         <select name="jenis_kelamin" id="verticalnav-jenis-kelamin" class="form-select">
-                                            <option>Pilih Jenis Kelamin</option>
+                                            <option></option>
                                             <option value="L">Laki-Laki</option>
                                             <option value="P">Perempuan</option>
                                         </select>
@@ -88,8 +89,16 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-foto-input">Foto</label>
-                                        <input type="file" class="form-control" name="foto" id="verticalnav-foto-input" placeholder="123456789">
+                                        <label for="verticalnav-agama">Pilih Agama</label>
+                                        <select name="agama" id="verticalnav-agama" class="form-select">
+                                            <option></option>
+                                            <option>Islam</option>
+                                            <option>Kristen</option>
+                                            <option>Katolik</option>
+                                            <option>Hindu</option>
+                                            <option>Budha</option>
+                                            <option>Konghucu</option>
+                                        </select>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
@@ -98,14 +107,33 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="verticalnav-phoneno-input">No Hp/Whatsapp</label>
-                                        <input type="number" class="form-control" name="telp" id="verticalnav-phoneno-input" placeholder="+62xxx xxxx xxxx">
+                                        <input type="number" class="form-control" name="telp" id="verticalnav-phoneno-input" value="{{ old('telp') }}" placeholder="+62xxx xxxx xxxx">
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="verticalnav-nama_orang_tua-input">nama Orang Tua</label>
-                                        <input type="text" class="form-control" name="nama_orang_tua" id="verticalnav-nama_orang_tua-input" placeholder="Alex">
+                                        <label for="verticalnav-foto-input">Foto</label>
+                                        <input type="file" class="form-control" name="foto" id="verticalnav-foto-input" value="{{ old('foto') }}" placeholder="123456789">
                                     </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-nama_orang_tua-input">Nama Orang Tua/Wali</label>
+                                        <input type="text" class="form-control" name="nama_orang_tua" id="verticalnav-nama_orang_tua-input" value="{{ old('nama_orang_tua') }}" placeholder="Contoh: Alex Munster">
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="verticalnav-pekerjaan_orang_tua-input">Pekerjaan Orang Tua/Wali</label>
+                                        <input type="text" class="form-control" name="pekerjaan_orang_tua" id="verticalnav-pekerjaan_orang_tua-input" value="{{ old('pekerjaan_orang_tua') }}" placeholder="Contoh: Karyawan Swasta">
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6 d-flex align-items-center">
+                                    <span for="verticalnav-anak_ke">Anak&nbsp;ke</span>
+                                    <input type="text" class="form-control mx-2" name="anak_ke[]" id="verticalnav-anak_ke" value="{{ old('anak_ke.0', '') }}" placeholder="Contoh: 2">
+                                    <span for="verticalnav-anak_ke">Dari</span>
+                                    <input type="text" class="form-control mx-2" name="anak_ke[]" id="verticalnav-anak_ke" value="{{ old('anak_ke.1', '') }}" placeholder="Contoh: 3">
+                                    <span>Bersaudara</span>
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
 
@@ -113,7 +141,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="verticalnav-address-input">Alamat</label>
-                                        <textarea id="verticalnav-address-input" name="alamat" class="form-control" rows="2" placeholder="Alamat Domisili"></textarea>
+                                        <textarea id="verticalnav-address-input" name="alamat" class="form-control" rows="2" value="{{ old('alamat') }}" placeholder="Alamat Domisili"></textarea>
                                     </div>
                                 </div><!-- end col-lg-12 -->
                             </div><!-- end row -->
@@ -133,9 +161,9 @@
                                         </div><!-- end col-lg-6 -->
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label>Status</label>
+                                                <label>Pilih Status</label>
                                                 <select class="form-select" name="status">
-                                                    <option>Pilih Status</option>
+                                                    <option></option>
                                                     <option value="0">Tidak Aktif</option>
                                                     <option value="1">Aktif</option>
                                                 </select>

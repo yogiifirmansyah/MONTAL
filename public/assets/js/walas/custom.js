@@ -62,9 +62,9 @@ $(document).ready(function () {
         });
     });
 
-    // --------------------Bimbingan Fisik-------------------- //
+    // --------------------Laporan Perkembangan-------------------- //
 
-    // Store Bimbingan Fisik
+    // Store Laporan Perkembangan
     $(document).on("click", "#addLaporanPerkembangan", function () {
         $("#LaporanPerkembanganData").trigger("reset");
         $(".modal-title").html("Tambah Laporan");
@@ -194,6 +194,151 @@ $(document).ready(function () {
             $.ajax({
                 type: "get",
                 url: "/laporan-perkembangan/delete/" + LaporanPerkembangan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
+
+    // --------------------Pertanyaan Umum-------------------- //
+
+    // Delete Pertanyaan Umum
+    $(document).on("click", "#deletePertanyaanUmum", function (e) {
+        e.preventDefault();
+        var PertanyaanUmum_id = $(this).attr("PertanyaanUmum_id");
+        $(document).on("click", "#destroyPertanyaanUmum", function (e) {
+            e.preventDefault();
+            // console.log(indikatorId);
+            $.ajax({
+                type: "get",
+                url: "/instrumen/delete/" + PertanyaanUmum_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
+
+    // --------------------Instrumen 2-------------------- //
+
+    // Delete Instrumen 2
+    $(document).on("click", "#deleteInstrumen2", function (e) {
+        e.preventDefault();
+        var Instrumen2_id = $(this).attr("Instrumen2_id");
+        $(document).on("click", "#destroyInstrumen2", function (e) {
+            e.preventDefault();
+            // console.log(indikatorId);
+            $.ajax({
+                type: "get",
+                url: "/instrumen-2/delete/" + Instrumen2_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+    });
+
+    // --------------------Pertanyaan Lanjutan-------------------- //
+
+    // Delete Pertanyaan Lanjutan
+    $(document).on("click", "#deletePertanyaanLanjutan", function (e) {
+        e.preventDefault();
+        var PertanyaanLanjutan_id = $(this).attr("PertanyaanLanjutan_id");
+        $(document).on("click", "#destroyPertanyaanLanjutan1", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-1/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan2", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-2/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan3", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-3/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan4", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-4/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan5", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-5/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan6", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-6/delete/" +
+                    PertanyaanLanjutan_id,
+                success: function () {
+                    $("#myModalDelete").modal("hide");
+                    window.location.reload(true);
+                },
+            });
+        });
+
+        $(document).on("click", "#destroyPertanyaanLanjutan7", function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url:
+                    "/instrumen-1/pertanyaan-lanjutan-7/delete/" +
+                    PertanyaanLanjutan_id,
                 success: function () {
                     $("#myModalDelete").modal("hide");
                     window.location.reload(true);

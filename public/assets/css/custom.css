@@ -106,10 +106,10 @@
     }
 
     .container .content .content-two img {
-        width: 35rem;
+        width: 23rem;
         position: absolute;
-        top: 2rem;
-        left: -22rem;
+        top: 0;
+        left: -15rem;
     }
 }
 
@@ -132,16 +132,16 @@
     }
 
     .container .content .content-two img {
-        width: 35rem;
+        width: 28rem;
         position: absolute;
         top: 0;
-        left: -22rem;
+        left: -20rem;
     }
 }
 
 @media (max-width: 378px) {
     .container .content .content-two img {
-        width: 30rem;
+        width: 28rem;
         position: absolute;
         top: 0;
         left: -22rem;

@@ -34,7 +34,12 @@ class LaporanPerkembangan extends Model
         foreach ($laporanPerkembangan as $key => $value) {
             array_push($nilai, $value->nilai);
         }
-        $hasil = array_sum($nilai) / count($nilai);
-        return number_format($hasil, 2, '.', '');
+
+        if (!empty($nilai)) {
+            $hasil = array_sum($nilai) / count($nilai);
+            return number_format($hasil, 2, '.', '');
+        } else {
+            return 0;
+        }
     }
 }

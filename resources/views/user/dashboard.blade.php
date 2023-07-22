@@ -33,12 +33,12 @@ use App\Models\LaporanPerkembangan; ?>
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Jumlah Indikator</th>
-                            <th>Nilai Rata Rata</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
+                            <th width="20%">Nama</th>
+                            <th width="10%">Kelas</th>
+                            <th width="15%">Jumlah Indikator</th>
+                            <th width="15%">Nilai Rata Rata</th>
+                            <th width="10%">Keterangan</th>
+                            <th width="30%">Aksi</th>
                         </tr>
                     </thead>
 
@@ -59,6 +59,8 @@ use App\Models\LaporanPerkembangan; ?>
                                 @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.75) A @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.25 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.50) A- @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 3.00 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.25) B+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.75 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 3.00) B @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.75) B- @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.25 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.50) C+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 2.00 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.25) C+ @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 1.75 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 2.00) C @elseif (LaporanPerkembangan::nilaiRataRata($siswa->id) >= 1.50 && LaporanPerkembangan::nilaiRataRata($siswa->id) <= 1.75) C- @else D @endif </td>
                             <td>
                                 <a href="javascript:void(0)" id="showSiswa" siswa_id="{{ $siswa->id }}"><span class="badge bg-soft-warning" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">Lihat Detail Nilai</span></a>
+                                <a href="{{ url('detail-instrumen-1/'.$siswa->id) }}"><span class="badge bg-soft-primary">Lihat Detail Instrumen 1</span></a>
+                                <a href="{{ url('detail-instrumen-2/'.$siswa->id) }}"><span class="badge bg-soft-info">Lihat Detail Instrumen 2</span></a>
                             </td>
                         </tr>
                         @endforeach
