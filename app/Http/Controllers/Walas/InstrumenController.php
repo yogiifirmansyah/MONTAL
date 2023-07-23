@@ -17,13 +17,21 @@ use App\Models\Pertanyaan6Lanjutan;
 use App\Models\Pertanyaan7Lanjutan;
 use App\Http\Controllers\Controller;
 use App\Models\InstrumenKesehatanMental;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class InstrumenController extends Controller
 {
     public function index()
     {
-        $pertanyaanUmums = PertanyaanUmum::all();
+        $walas = WaliKelas::where('user_id', Auth::user()->id)->first();
+        $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
+        $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+        $siswaId = [];
+        foreach ($siswa as $key => $s) {
+            array_push($siswaId, $s->id);
+        }
+        $pertanyaanUmums = PertanyaanUmum::whereIn('siswa_id', $siswaId)->get();
 
         return view('walas.instrumen.index', compact('pertanyaanUmums'));
     }
@@ -1575,7 +1583,14 @@ class InstrumenController extends Controller
 
     public function index2()
     {
-        $instrumenKesehatanMentals = InstrumenKesehatanMental::all();
+        $walas = WaliKelas::where('user_id', Auth::user()->id)->first();
+        $kelas = Kelas::where('wali_kelas_id', $walas->id)->first();
+        $siswa = Siswa::where('kelas_id', $kelas->id)->get();
+        $siswaId = [];
+        foreach ($siswa as $key => $s) {
+            array_push($siswaId, $s->id);
+        }
+        $instrumenKesehatanMentals = InstrumenKesehatanMental::whereIn('siswa_id', $siswaId)->get();
 
         return view('walas.instrumen-2.index', compact('instrumenKesehatanMentals'));
     }

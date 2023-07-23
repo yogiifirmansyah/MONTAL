@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="{{url('index')}}" class="logo logo-dark">
+                <a href="" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
@@ -12,7 +12,7 @@
                     </span>
                 </a>
 
-                <a href="{{url('index')}}" class="logo logo-light">
+                <a href="" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
@@ -258,8 +258,10 @@
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @if (!empty(auth()->user()->wali_kelas->foto))
             <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/photos/wali-kelas/'. Auth::user()->wali_kelas->foto) }}" alt="Header Avatar">
+            @elseif (!empty(auth()->user()->siswa->foto))
+            <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/photos/siswa/'. Auth::user()->siswa->foto) }}" alt="Header Avatar">
             @else
-            <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}" alt="Header Avatar">
+            <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/users/user.png') }}" alt="Header Avatar">
             @endif
             <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{Str::ucfirst(Auth::user()->name)}}</span>
             <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>

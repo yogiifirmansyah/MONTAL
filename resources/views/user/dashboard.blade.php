@@ -30,6 +30,7 @@ use App\Models\LaporanPerkembangan; ?>
                 </div>
                 @endif
 
+                @if (!empty($siswa))
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -43,7 +44,6 @@ use App\Models\LaporanPerkembangan; ?>
                     </thead>
 
                     <tbody>
-                        @foreach ($siswas as $siswa)
                         <tr>
                             <td>{{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}</td>
                             <td>{{ $siswa->kelas->nama_kelas }}</td>
@@ -63,9 +63,12 @@ use App\Models\LaporanPerkembangan; ?>
                                 <a href="{{ url('detail-instrumen-2/'.$siswa->id) }}"><span class="badge bg-soft-info">Lihat Detail Instrumen 2</span></a>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
+                @else
+                <h1 class="text-center">STATUS SISWA TIDAK AKTIF!</h1>
+                @endif
+
             </div>
         </div>
     </div> <!-- end col -->

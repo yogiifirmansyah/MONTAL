@@ -16,7 +16,6 @@
                 <h2>Selamat datang di<br>SIMONTAL</h2>
                 <p>Eksplorasi SIMONTAL disini</p>
                 <a href="{{ url('login') }}" class="button-login">Masuk</a>
-                <a href="{{ url('register') }}" class="button-register">Daftar</a>
                 <div class="copy">©2023 Simontal</div>
                 <div class="circle"></div>
             </div>

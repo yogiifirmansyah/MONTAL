@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Kelas;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
 use Intervention\Image\Facades\Image;
 
@@ -21,6 +22,8 @@ class SiswaController extends Controller
     public function create()
     {
         $kelas = Kelas::all();
+        $random = rand(0, 9999);
+
         return view('admin.siswa.create', compact('kelas'));
     }
 
@@ -65,6 +68,14 @@ class SiswaController extends Controller
 
         );
 
+        // // Store data in database users
+        $user = new User;
+        $user->name = $request->nama_depan . ' ' . $request->nama_belakang;
+        $user->email = strtolower($request->nama_depan) . '.' . rand(0, 999) . '@gmail.com';
+        $user->password = bcrypt($request->nisn);
+        $user->role = 0;
+        $user->save();
+
         // Upload Photo
         if ($request->hasFile('foto')) {
             $image_tmp = $request->file('foto');
@@ -83,9 +94,11 @@ class SiswaController extends Controller
             $image_name = null;
         }
 
-        // Store data in database wali kelas
+        $user_id = User::orderBy('id', 'DESC')->pluck('id')->first();
+        // Store data in database siswa
         $siswa = new Siswa;
         $siswa->kelas_id = $request->kelas_id;
+        $siswa->user_id = $user_id;
         $siswa->nama_depan = $request->nama_depan;
         $siswa->nama_belakang = $request->nama_belakang;
         $siswa->nisn = $request->nisn;

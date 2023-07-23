@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Walas;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Indikator;
@@ -184,7 +186,13 @@ class LaporanPerkembanganController extends Controller
     {
         // dd($id);
         $siswa = Siswa::find($id);
-        return response()->json($siswa);
+        $user = User::find($siswa->user_id);
+        $usia = Carbon::parse($siswa->tanggal_lahir)->age;
+        return response()->json([
+            'siswa' => $siswa,
+            'user' => $user,
+            'usia' => $usia,
+        ]);
     }
 
     public function edit($id)

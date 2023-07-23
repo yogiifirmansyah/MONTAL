@@ -10,9 +10,19 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="d-flex flex-wrap gap-3 mb-3">
+            @if (auth()->user()->role == 2)
+            <a href="{{ url('admin/dashboard') }}">
+                <button class="btn btn-outline-secondary waves-effect waves-light w-md">Kembali</button>
+            </a>
+            @elseif (auth()->user()->role == 1)
             <a href="{{ url('dashboard-walikelas') }}">
                 <button class="btn btn-outline-secondary waves-effect waves-light w-md">Kembali</button>
             </a>
+            @else
+            <a href="{{ url('dashboard') }}">
+                <button class="btn btn-outline-secondary waves-effect waves-light w-md">Kembali</button>
+            </a>
+            @endif
         </div>
         <div class="card">
             <form action="{{ url('change-password/'.auth()->user()->id) }}" method="POST" enctype="multipart/form-data">

@@ -17,6 +17,7 @@ use App\Models\Pertanyaan5Lanjutan;
 use App\Models\Pertanyaan6Lanjutan;
 use App\Models\Pertanyaan7Lanjutan;
 use App\Models\InstrumenKesehatanMental;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -36,8 +37,8 @@ class HomeController extends Controller
      */
     public function userHome()
     {
-        $siswas = Siswa::where('status', 1)->get();
-        return view('user.dashboard', compact('siswas'));
+        $siswa = Siswa::where('user_id', Auth::user()->id)->where('status', 1)->first();
+        return view('user.dashboard', compact('siswa'));
     }
 
     public function detailNilaiSiswa($id)

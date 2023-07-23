@@ -24,6 +24,11 @@
                             <a href="{{ url('detail-instrumen-1/pertanyaan-lanjutan-5/'.$pertanyaanUmum->siswa_id) }}" class="btn btn-dark waves-effect waves-light w-md float-end mx-1">Sebelumnya</a>
                         </h4>
                     </div>
+                    <div class="col-md-6">
+                        <div class="card bg-warning p-2">
+                            Pertanyaan Lanjutan untuk Item yang terjawab Ya di nomor 10 dan/atau 13
+                        </div>
+                    </div>
                 </div>
 
                 <table class="table table-bordered" width="100%">

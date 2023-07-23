@@ -9,49 +9,66 @@ $(document).ready(function () {
             type: "get",
             url: "/laporan-perkembangan/show/" + siswaId,
             success: function (data) {
+                const anak_ke = data.siswa.anak_ke.split(",");
                 $("#modalContent").html(`
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3">
                             <img src="/assets/images/photos/siswa/${
-                                data.foto
+                                data.siswa.foto
                             }" class="img-fluid" />
                         </div>
                         <div class="col-md">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <h4>${data.nama_depan} ${
-                    data.nama_belakang
+                                    <h4>${data.siswa.nama_depan} ${
+                    data.siswa.nama_belakang
                 }</h4>
                                 </li>
+                                <li class="list-group-item"><strong>Email: </strong>${
+                                    data.user.email
+                                } | Password: </strong> ${data.siswa.nisn}</li>
                                 <li class="list-group-item"><strong>NISN: </strong>${
-                                    data.nisn
+                                    data.siswa.nisn
                                 }</li>
-                                <li class="list-group-item"><strong>TTL: </strong>${
-                                    data.tempat_lahir
-                                }, ${data.tanggal_lahir}</li>
+                                <li class="list-group-item"><strong>TTL/Usia: </strong>${
+                                    data.siswa.tempat_lahir
+                                }, ${data.siswa.tanggal_lahir} / ${
+                    data.usia
+                }</li>
                                 <li class="list-group-item"><strong>Jenis Kelamin: </strong>${
-                                    data.jenis_kelamin === "L"
+                                    data.siswa.jenis_kelamin === "L"
                                         ? "Laki-Laki"
                                         : "Perempuan"
                                 }</li>
+                                <li class="list-group-item"><strong>Agama: </strong>${
+                                    data.siswa.agama
+                                }</li>
                                 <li class="list-group-item"><strong>Telp: </strong>${
-                                    data.telp
+                                    data.siswa.telp
                                 }</li>
                                 <li class="list-group-item"><strong>Nama Orang Tua: </strong>${
-                                    data.nama_orang_tua
+                                    data.siswa.nama_orang_tua
                                 }</li>
+                                <li class="list-group-item"><strong>Pekerjaan Orang Tua: </strong>${
+                                    data.siswa.pekerjaan_orang_tua
+                                }</li>
+                                <li class="list-group-item"><strong>Anak ke dari jumlah saudara: </strong> ke ${
+                                    anak_ke[0]
+                                } dari ${anak_ke[1]} bersaudara</li>
                                 <li class="list-group-item"><strong>Alamat Lengkap: </strong>${
-                                    data.alamat
+                                    data.siswa.alamat
                                 }</li>
                                 <li class="list-group-item"><strong>Tanggal Masuk: </strong>${
-                                    data.tanggal_masuk
+                                    data.siswa.tanggal_masuk
                                 }</li>
                                 <li class="list-group-item"><strong>Tanggal Keluar: </strong>${
-                                    data.tanggal_keluar != null ? "" : "-"
+                                    data.siswa.tanggal_keluar != null ? "" : "-"
                                 }</li>
                                 <li class="list-group-item"><strong>Status: </strong>${
-                                    data.status === 1 ? "Aktif" : "Tidak Aktif"
+                                    data.siswa.status === 1
+                                        ? "Aktif"
+                                        : "Tidak Aktif"
                                 }</li>
                             </ul>
                         </div>

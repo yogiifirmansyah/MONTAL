@@ -89,9 +89,6 @@
                                 </div>
                                 */ ?>
 
-                                <div class="mt-4 text-center">
-                                    <p class="mb-0">Don't have an account ? <a href="{{ url('register') }}" class="fw-medium text-primary"> Signup now </a> </p>
-                                </div>
                             </form>
                         </div>
 

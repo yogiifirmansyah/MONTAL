@@ -17,9 +17,12 @@ class CreateKelasSeeder extends Seeder
     {
         $kelas = [
             [
-                'id' => 1,
                 'wali_kelas_id' => 1,
-                'nama_kelas' => 'IX - A',
+                'nama_kelas' => 'A',
+            ],
+            [
+                'wali_kelas_id' => 2,
+                'nama_kelas' => 'B',
             ],
         ];
 

@@ -18,8 +18,9 @@ class CreateSiswaSeeder extends Seeder
         $waliKelas = [
             [
                 'kelas_id' => 1,
-                'nama_depan' => 'Leo',
-                'nama_belakang' => 'Messi',
+                'user_id' => 1,
+                'nama_depan' => 'Siswa',
+                'nama_belakang' => '1',
                 'nisn' => 123456,
                 'tempat_lahir' => 'Surabaya',
                 'tanggal_lahir' => '2001-01-01',
@@ -34,9 +35,10 @@ class CreateSiswaSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'kelas_id' => 1,
-                'nama_depan' => 'Cristiano',
-                'nama_belakang' => 'Ronaldo',
+                'kelas_id' => 2,
+                'user_id' => 5,
+                'nama_depan' => 'Siswa',
+                'nama_belakang' => '2',
                 'nisn' => 123456,
                 'tempat_lahir' => 'Surabaya',
                 'tanggal_lahir' => '2001-01-01',
@@ -50,23 +52,6 @@ class CreateSiswaSeeder extends Seeder
                 'tanggal_masuk' => '2023-06-02',
                 'status' => 1,
             ],
-            [
-                'kelas_id' => 1,
-                'nama_depan' => 'Robert',
-                'nama_belakang' => 'Lewandoski',
-                'nisn' => 123456,
-                'tempat_lahir' => 'Surabaya',
-                'tanggal_lahir' => '2001-01-01',
-                'jenis_kelamin' => 'L',
-                'agama' => 'Islam',
-                'anak_ke' => '2,3',
-                'nama_orang_tua' => 'Alex',
-                'pekerjaan_orang_tua' => 'Swasta',
-                'telp' => '083123456789',
-                'alamat' => 'Surabya',
-                'tanggal_masuk' => '2023-06-02',
-                'status' => 1,
-            ]
         ];
 
         foreach ($waliKelas as $key => $walas) {
